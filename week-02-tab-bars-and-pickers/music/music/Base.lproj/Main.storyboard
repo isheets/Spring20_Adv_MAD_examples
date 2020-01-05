@@ -22,7 +22,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NhC-XH-KKG">
-                                <rect key="frame" x="47" y="285" width="0.0" height="216"/>
+                                <rect key="frame" x="47" y="285" width="320" height="216"/>
                                 <connections>
                                     <outlet property="dataSource" destination="9pv-A4-QxB" id="XAk-Og-yLi"/>
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="H5a-wa-GCz"/>
@@ -78,6 +78,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="mcD-84-jft">
+            <objects>
+                <viewController id="iRo-yM-f58" customClass="ThirdViewController" customModule="music" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Igj-c7-apm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Picker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCn-Hv-027">
+                                <rect key="frame" x="114" y="100" width="186" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ky-sE-AcO">
+                                <rect key="frame" x="47" y="230" width="320" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="iRo-yM-f58" id="P6T-7d-uBW"/>
+                                    <outlet property="delegate" destination="iRo-yM-f58" id="JTX-0e-WUL"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Output" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mjj-aw-Gef">
+                                <rect key="frame" x="180" y="532" width="54" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Mjj-aw-Gef" firstAttribute="top" secondItem="6Ky-sE-AcO" secondAttribute="bottom" constant="86" id="9Ly-rS-jq6"/>
+                            <constraint firstItem="Mjj-aw-Gef" firstAttribute="centerX" secondItem="Igj-c7-apm" secondAttribute="centerX" id="DHa-Jf-fiR"/>
+                            <constraint firstItem="KCn-Hv-027" firstAttribute="top" secondItem="Ypm-t0-o3h" secondAttribute="top" constant="56" id="XgU-C1-8KO"/>
+                            <constraint firstItem="KCn-Hv-027" firstAttribute="centerX" secondItem="Igj-c7-apm" secondAttribute="centerX" id="cZx-uY-Wdq"/>
+                            <constraint firstItem="6Ky-sE-AcO" firstAttribute="centerX" secondItem="Igj-c7-apm" secondAttribute="centerX" id="gQ8-1X-33v"/>
+                            <constraint firstItem="6Ky-sE-AcO" firstAttribute="top" secondItem="KCn-Hv-027" secondAttribute="bottom" constant="87" id="zgC-ag-QH3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ypm-t0-o3h"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="dGe-Cs-YJi"/>
+                    <connections>
+                        <outlet property="artistAlbumPicker" destination="6Ky-sE-AcO" id="qz7-lA-9as"/>
+                        <outlet property="choiceLabel" destination="Mjj-aw-Gef" id="IRy-zS-TPe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gUy-94-DR7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749" y="-1016"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
@@ -141,6 +190,7 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="iRo-yM-f58" kind="relationship" relationship="viewControllers" id="rLP-YZ-Fd7"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
