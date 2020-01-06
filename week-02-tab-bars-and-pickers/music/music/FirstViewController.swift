@@ -23,7 +23,7 @@ class FirstViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     
     //picker view methods for data source
-    //how many "columns" do we want?
+    //how many "columns" or components do we want?
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

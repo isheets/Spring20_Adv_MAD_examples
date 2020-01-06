@@ -10,7 +10,7 @@ import UIKit
 
 class SecondViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    //array to supply hard coded data to the picker -- not recommended for production. use plists
+    //arrays to supply hard coded data to the picker -- not recommended for production. use plists
     let genres = ["Rock", "Country", "Indie", "Hip Hop", "Pop", "House"]
     let decades = ["1960s", "1970s", "1980s", "1990s", "2000s", "2010s"]
 

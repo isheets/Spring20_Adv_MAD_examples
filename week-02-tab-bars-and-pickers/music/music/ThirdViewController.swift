@@ -23,7 +23,7 @@ class ThirdViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //load the data using our data class
         do {
             try artistAlbums.loadData()
             artists = try artistAlbums.getAllArtists()
@@ -34,22 +34,24 @@ class ThirdViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
     }
     
-    
+    //need two components again
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
-    
+
+    //return the right number of rows based on the size of each data array
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == artistComponent {
             return artists.count
         } else if component == albumComponent {
             return albums.count
         } else {
-            print("Unkown component")
+            print("Unknown component")
             return -1
         }
     }
-    
+
+    //get the titles for each row from the data arrays
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == artistComponent {
             return artists[row]
@@ -60,7 +62,7 @@ class ThirdViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             return "Unknown component"
         }
     }
-    
+
     //change the albums component when the user selects a new artist -- also update the choice label
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //need to update albums if user selects a new artists
@@ -74,6 +76,7 @@ class ThirdViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             }
             //update the album component
             artistAlbumPicker.reloadComponent(albumComponent)
+            //reset the album component to the first row
             artistAlbumPicker.selectRow(0, inComponent: albumComponent, animated: true)
         }
         

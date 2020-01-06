@@ -61,7 +61,7 @@ class ArtistAlbumsController {
         
         
     }
-    
+
     //get the albums for any of the artists or throw an error
     func getAlbums(idx: Int) throws -> [String] {
         if let data = artistAlbumData {
