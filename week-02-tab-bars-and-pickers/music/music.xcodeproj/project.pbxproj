@@ -19,6 +19,8 @@
 		6A238F2D23C276AA00A06EBA /* ArtistAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A238F2C23C276AA00A06EBA /* ArtistAlbums.swift */; };
 		6A238F2F23C277F400A06EBA /* ArtistAlbumsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A238F2E23C277F400A06EBA /* ArtistAlbumsController.swift */; };
 		6A238F3123C397E400A06EBA /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A238F3023C397E400A06EBA /* FourthViewController.swift */; };
+		6A3CCA2C23C3B7F300E8B518 /* FifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3CCA2B23C3B7F300E8B518 /* FifthViewController.swift */; };
+		6A3CCA2F23C3B87F00E8B518 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3CCA2E23C3B87F00E8B518 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		6A238F2C23C276AA00A06EBA /* ArtistAlbums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistAlbums.swift; sourceTree = "<group>"; };
 		6A238F2E23C277F400A06EBA /* ArtistAlbumsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistAlbumsController.swift; sourceTree = "<group>"; };
 		6A238F3023C397E400A06EBA /* FourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
+		6A3CCA2B23C3B7F300E8B518 /* FifthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthViewController.swift; sourceTree = "<group>"; };
+		6A3CCA2E23C3B87F00E8B518 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A3CCA2F23C3B87F00E8B518 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +59,7 @@
 			children = (
 				6A238F0C23C15D5600A06EBA /* music */,
 				6A238F0B23C15D5600A06EBA /* Products */,
+				6A3CCA2D23C3B87E00E8B518 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,6 +81,7 @@
 				6A238F1523C15D5600A06EBA /* Main.storyboard */,
 				6A238F3023C397E400A06EBA /* FourthViewController.swift */,
 				6A238F2823C2739000A06EBA /* ThirdViewController.swift */,
+				6A3CCA2B23C3B7F300E8B518 /* FifthViewController.swift */,
 				6A238F1823C15D5700A06EBA /* Assets.xcassets */,
 				6A238F1A23C15D5700A06EBA /* LaunchScreen.storyboard */,
 				6A238F1D23C15D5700A06EBA /* Info.plist */,
@@ -83,6 +90,14 @@
 				6A238F2E23C277F400A06EBA /* ArtistAlbumsController.swift */,
 			);
 			path = music;
+			sourceTree = "<group>";
+		};
+		6A3CCA2D23C3B87E00E8B518 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6A3CCA2E23C3B87F00E8B518 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A3CCA2C23C3B7F300E8B518 /* FifthViewController.swift in Sources */,
 				6A238F2F23C277F400A06EBA /* ArtistAlbumsController.swift in Sources */,
 				6A238F1423C15D5600A06EBA /* SecondViewController.swift in Sources */,
 				6A238F1223C15D5600A06EBA /* FirstViewController.swift in Sources */,
