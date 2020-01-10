@@ -40,7 +40,7 @@ class FifthViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecor
             print("No audio recorder instance")
         }
     }
-    
+
     //either stop the recording or stop the playing, depending on which is currently happening
     @IBAction func stopAudio(_ sender: Any) {
         stopButton.isEnabled = false
@@ -60,7 +60,7 @@ class FifthViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecor
             }
         }
     }
-    
+
     @IBAction func playAudio(_ sender: Any) {
         //make sure we aren't recording
         if audioRecorder?.isRecording == false {
