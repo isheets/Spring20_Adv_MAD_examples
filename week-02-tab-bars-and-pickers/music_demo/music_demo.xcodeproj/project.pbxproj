@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A556FE523E09CEA00B7EBDE /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A556FE423E09CEA00B7EBDE /* FourthViewController.swift */; };
+		6A556FE723E0A53000B7EBDE /* FifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A556FE623E0A53000B7EBDE /* FifthViewController.swift */; };
 		6A7DA2D223D9FE71005A137D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7DA2D123D9FE71005A137D /* AppDelegate.swift */; };
 		6A7DA2D423D9FE71005A137D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7DA2D323D9FE71005A137D /* SceneDelegate.swift */; };
 		6A7DA2D623D9FE71005A137D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7DA2D523D9FE71005A137D /* FirstViewController.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A556FE423E09CEA00B7EBDE /* FourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
+		6A556FE623E0A53000B7EBDE /* FifthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthViewController.swift; sourceTree = "<group>"; };
 		6A7DA2CE23D9FE71005A137D /* music_demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = music_demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A7DA2D123D9FE71005A137D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A7DA2D323D9FE71005A137D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 				6A7DA2D523D9FE71005A137D /* FirstViewController.swift */,
 				6A7DA2D723D9FE71005A137D /* SecondViewController.swift */,
 				6A7DA2D923D9FE71005A137D /* Main.storyboard */,
+				6A556FE623E0A53000B7EBDE /* FifthViewController.swift */,
+				6A556FE423E09CEA00B7EBDE /* FourthViewController.swift */,
 				6A7DA2EB23DA0D2D005A137D /* artist-albums.plist */,
 				6A7DA2ED23DA1197005A137D /* ArtistAlbums.swift */,
 				6A7DA2EF23DA12BA005A137D /* ArtistAlbumsController.swift */,
@@ -154,10 +160,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A556FE723E0A53000B7EBDE /* FifthViewController.swift in Sources */,
 				6A7DA2F023DA12BA005A137D /* ArtistAlbumsController.swift in Sources */,
 				6A7DA2D823D9FE71005A137D /* SecondViewController.swift in Sources */,
 				6A7DA2D623D9FE71005A137D /* FirstViewController.swift in Sources */,
 				6A7DA2EE23DA1197005A137D /* ArtistAlbums.swift in Sources */,
+				6A556FE523E09CEA00B7EBDE /* FourthViewController.swift in Sources */,
 				6A7DA2EA23DA0BAE005A137D /* ThirdViewController.swift in Sources */,
 				6A7DA2D223D9FE71005A137D /* AppDelegate.swift in Sources */,
 				6A7DA2D423D9FE71005A137D /* SceneDelegate.swift in Sources */,

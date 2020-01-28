@@ -17,7 +17,7 @@ class SearchResultsController: UITableViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //no storyboard scene so programatically register the cell reuse identifier
+        //no storyboard scene so programmatically register the cell reuse identifier
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ScrabbleCell")
     }
 
