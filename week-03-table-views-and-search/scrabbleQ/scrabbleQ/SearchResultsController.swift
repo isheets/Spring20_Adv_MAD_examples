@@ -22,11 +22,10 @@ class SearchResultsController: UITableViewController, UISearchResultsUpdating {
     }
 
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredWords.count
     }
-    
+
     //delegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScrabbleCell", for: indexPath)

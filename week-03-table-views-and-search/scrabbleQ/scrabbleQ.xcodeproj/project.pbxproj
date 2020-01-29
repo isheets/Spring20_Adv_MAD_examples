@@ -7,18 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A0F867923E0BDBB001D70F6 /* q-words.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A0F867823E0BDBB001D70F6 /* q-words.plist */; };
+		6A0F867B23E0BDE0001D70F6 /* q-words-no-u.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A0F867A23E0BDE0001D70F6 /* q-words-no-u.plist */; };
 		6A556FCB23DF899100B7EBDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A556FCA23DF899100B7EBDE /* AppDelegate.swift */; };
 		6A556FCD23DF899100B7EBDE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A556FCC23DF899100B7EBDE /* SceneDelegate.swift */; };
 		6A556FCF23DF899100B7EBDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A556FCE23DF899100B7EBDE /* ViewController.swift */; };
 		6A556FD223DF899100B7EBDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A556FD023DF899100B7EBDE /* Main.storyboard */; };
 		6A556FD423DF899400B7EBDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A556FD323DF899400B7EBDE /* Assets.xcassets */; };
 		6A556FD723DF899400B7EBDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A556FD523DF899400B7EBDE /* LaunchScreen.storyboard */; };
-		6A556FDF23DFCC5D00B7EBDE /* qwordswithoutu1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A556FDE23DFCC5D00B7EBDE /* qwordswithoutu1.plist */; };
 		6A556FE123DFCCB100B7EBDE /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A556FE023DFCCB100B7EBDE /* DataController.swift */; };
 		6A556FE323DFD8BC00B7EBDE /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A556FE223DFD8BC00B7EBDE /* SearchResultsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A0F867823E0BDBB001D70F6 /* q-words.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "q-words.plist"; sourceTree = "<group>"; };
+		6A0F867A23E0BDE0001D70F6 /* q-words-no-u.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "q-words-no-u.plist"; sourceTree = "<group>"; };
 		6A556FC723DF899100B7EBDE /* scrabbleQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scrabbleQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A556FCA23DF899100B7EBDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A556FCC23DF899100B7EBDE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -27,7 +30,6 @@
 		6A556FD323DF899400B7EBDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A556FD623DF899400B7EBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6A556FD823DF899400B7EBDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6A556FDE23DFCC5D00B7EBDE /* qwordswithoutu1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = qwordswithoutu1.plist; sourceTree = "<group>"; };
 		6A556FE023DFCCB100B7EBDE /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		6A556FE223DFD8BC00B7EBDE /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,13 +67,14 @@
 				6A556FCA23DF899100B7EBDE /* AppDelegate.swift */,
 				6A556FCC23DF899100B7EBDE /* SceneDelegate.swift */,
 				6A556FCE23DF899100B7EBDE /* ViewController.swift */,
+				6A0F867823E0BDBB001D70F6 /* q-words.plist */,
 				6A556FE223DFD8BC00B7EBDE /* SearchResultsController.swift */,
 				6A556FD023DF899100B7EBDE /* Main.storyboard */,
 				6A556FD323DF899400B7EBDE /* Assets.xcassets */,
 				6A556FD523DF899400B7EBDE /* LaunchScreen.storyboard */,
 				6A556FD823DF899400B7EBDE /* Info.plist */,
-				6A556FDE23DFCC5D00B7EBDE /* qwordswithoutu1.plist */,
 				6A556FE023DFCCB100B7EBDE /* DataController.swift */,
+				6A0F867A23E0BDE0001D70F6 /* q-words-no-u.plist */,
 			);
 			path = scrabbleQ;
 			sourceTree = "<group>";
@@ -134,8 +137,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A0F867923E0BDBB001D70F6 /* q-words.plist in Resources */,
 				6A556FD723DF899400B7EBDE /* LaunchScreen.storyboard in Resources */,
-				6A556FDF23DFCC5D00B7EBDE /* qwordswithoutu1.plist in Resources */,
+				6A0F867B23E0BDE0001D70F6 /* q-words-no-u.plist in Resources */,
 				6A556FD423DF899400B7EBDE /* Assets.xcassets in Resources */,
 				6A556FD223DF899100B7EBDE /* Main.storyboard in Resources */,
 			);
