@@ -57,18 +57,72 @@ class FifthViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecor
     }
     
     @IBAction func recordAudio(_ sender: Any) {
-    
-    
+        
+        if let recorder = audioRecorder {
+            //we have an instance of AudioRecorder
+            if recorder.isRecording == false {
+                    
+                playAudio.isEnabled = false
+                stopAudio.isEnabled = true
+                recorder.delegate = self
+                
+                recorder.record()
+            }
+            
+        } else {
+            print("no recorder!")
+        }
+        
     }
     
     @IBAction func playAudio(_ sender: Any) {
-    
+        if audioRecorder?.isRecording == false {
+            stopAudio.isEnabled = true
+            recordAudio.isEnabled = false
+            
+            do {
+                try audioPlayer = AVAudioPlayer(contentsOf: (audioRecorder?.url)!)
+                try audioSession.setCategory(AVAudioSession.Category.playback)
+                
+                audioPlayer!.delegate = self
+                audioPlayer!.prepareToPlay()
+                audioPlayer!.play()
+            } catch {
+                print("could not play audio")
+            }
+        }
     
     }
     
+    //stop recording or playing based on what's happening
     @IBAction func stopAudio(_ sender: Any) {
+        stopAudio.isEnabled = false
+        playAudio.isEnabled = true
+        recordAudio.isEnabled = true
+        
+        if audioRecorder?.isRecording == true {
+            audioRecorder?.stop()
+        } else {
+            audioPlayer?.stop()
+            //reset session mode
+            do {
+                try audioSession.setCategory(AVAudioSession.Category.playAndRecord)
+            } catch {
+                print(error)
+            }
+        }
+    }
     
-    
+    //delegate method for audioPlayer
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        recordAudio.isEnabled = true
+        stopAudio.isEnabled = false
+        
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.playAndRecord)
+        } catch {
+            print(error)
+        }
     }
     
 }
