@@ -18,7 +18,7 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         //get app instance
         let app = UIApplication.shared
-        
+
         //subscribe to willResignActive notification
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: app)
         
@@ -43,6 +43,7 @@ class ViewController: UITableViewController {
             print(error)
         }
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return continentsList.count
     }
