@@ -8,6 +8,7 @@
 
 import Foundation
 
+//need to conform to Codable protocol since we'll be encoding and decoding
 struct ContinentsDataModel: Codable {
     var continent: String
     var countries: [String]
@@ -70,7 +71,9 @@ class ContinentsDataController {
     
     func writeData() throws {
         let dataFileURL = getDataFile(datafile: dataFileName)
+        //get an encoder
         let encoder = PropertyListEncoder()
+        //set format — plist is a type of xml
         encoder.outputFormat = .xml
         do {
             let data = try encoder.encode(allData.self)
