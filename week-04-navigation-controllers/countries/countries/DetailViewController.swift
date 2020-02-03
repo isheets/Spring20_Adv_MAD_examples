@@ -14,7 +14,7 @@ class DetailViewController: UITableViewController {
     var selectedContinent = 0
     var countryList = [String]()
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         countryList = continentsData.getCountries(idx: selectedContinent)
     }
 
