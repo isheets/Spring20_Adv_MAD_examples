@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+<dict>
+	<key>continent</key>
+	<string>Africa</string>
+	<key>countries</key>
+	<array>
+		<string>Algeria</string>
+		<string>Angola</string>
+	</array>
+</dict>
+<dict>
+	<key>continent</key>
+	<string>Antartica</string>
+	<key>countries</key>
+	<array>
+	</array>
+</dict>
+<dict>
+	<key>continent</key>
+	<string>Asia</string>
+	<key>countries</key>
+	<array>
+		<string>Afghanistan</string>
+		<string>Bahrain</string>
+	</array>
+</dict>
+<dict>
+	<key>continent</key>
+	<string>Europe</string>
+	<key>countries</key>
+	<array>
+		<string>Albania</string>
+		<string>Andorra</string>
+	</array>
+</dict>
+<dict>
+	<key>continent</key>
+	<string>North America</string>
+	<key>countries</key>
+	<array>
+		<string>Canada</string>
+		<string>United States</string>
+	</array>
+</dict>
+<dict>
+	<key>continent</key>
+	<string>Oceania</string>
+	<key>countries</key>
+	<array>
+		<string>Australia</string>
+		<string>New Zealand</string>
+	</array>
+</dict>
+<dict>
+	<key>continent</key>
+	<string>South America</string>
+	<key>countries</key>
+	<array>
+		<string>Argentina</string>
+		<string>Brazil</string>
+	</array>
+</dict>
+</array>
+</plist>
