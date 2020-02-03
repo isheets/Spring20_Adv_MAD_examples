@@ -15,6 +15,7 @@
 		6A2CB4F923E7A78C009CCF20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A2CB4F723E7A78C009CCF20 /* LaunchScreen.storyboard */; };
 		6A2CB50123E7AF07009CCF20 /* continents2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A2CB50023E7AF07009CCF20 /* continents2.plist */; };
 		6A2CB50323E7AF45009CCF20 /* Continents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2CB50223E7AF45009CCF20 /* Continents.swift */; };
+		6A2CB50523E7D1C6009CCF20 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2CB50423E7D1C6009CCF20 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		6A2CB4FA23E7A78C009CCF20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A2CB50023E7AF07009CCF20 /* continents2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = continents2.plist; sourceTree = "<group>"; };
 		6A2CB50223E7AF45009CCF20 /* Continents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Continents.swift; sourceTree = "<group>"; };
+		6A2CB50423E7D1C6009CCF20 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				6A2CB4EC23E7A78A009CCF20 /* AppDelegate.swift */,
 				6A2CB4EE23E7A78A009CCF20 /* SceneDelegate.swift */,
 				6A2CB4F023E7A78A009CCF20 /* ViewController.swift */,
+				6A2CB50423E7D1C6009CCF20 /* DetailViewController.swift */,
 				6A2CB4F223E7A78A009CCF20 /* Main.storyboard */,
 				6A2CB4F523E7A78C009CCF20 /* Assets.xcassets */,
 				6A2CB4F723E7A78C009CCF20 /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 			files = (
 				6A2CB50323E7AF45009CCF20 /* Continents.swift in Sources */,
 				6A2CB4F123E7A78A009CCF20 /* ViewController.swift in Sources */,
+				6A2CB50523E7D1C6009CCF20 /* DetailViewController.swift in Sources */,
 				6A2CB4ED23E7A78A009CCF20 /* AppDelegate.swift in Sources */,
 				6A2CB4EF23E7A78A009CCF20 /* SceneDelegate.swift in Sources */,
 			);
