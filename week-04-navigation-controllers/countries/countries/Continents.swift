@@ -16,16 +16,32 @@ struct ContinentsDataModel: Codable {
 enum DataError: Error {
     case NoDataFile
     case CouldNotDecode
+    case CouldNotEncode
 }
 
 class ContinentsDataController {
     var allData = [ContinentsDataModel]()
     let fileName = "continents2"
+    let dataFileName = "data.plist"
     
     //load data from plist
     func loadData() throws {
+        let pathURL: URL?
+        
+        //get the path where our data file would be
+        let dataFileURL = getDataFile(datafile: dataFileName)
+        
+        //check to see if the data file exists
+        if FileManager.default.fileExists(atPath: dataFileURL.path) {
+            pathURL = dataFileURL
+        } else {
+            //load default data if we can't find a user data file
+            pathURL = Bundle.main.url(forResource: fileName, withExtension: "plist")
+            
+        }
+
         //check for file and get URL if possible
-        if let dataURL = Bundle.main.url(forResource: fileName, withExtension: "plist") {
+        if let dataURL = pathURL {
             let decoder = PropertyListDecoder()
             do {
                 //get byte buffer (raw data)
@@ -40,6 +56,30 @@ class ContinentsDataController {
             //couldn't get path
             throw DataError.NoDataFile
         }
+    }
+    
+    func getDataFile(datafile: String) -> URL {
+        //get path for data file
+        let dirPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let docDir = dirPath[0] //documents directory
+        
+        // URL for our plist
+        return docDir.appendingPathComponent(datafile)
+    }
+
+    
+    func writeData() throws {
+        let dataFileURL = getDataFile(datafile: dataFileName)
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
+        do {
+            let data = try encoder.encode(allData.self)
+            try data.write(to: dataFileURL)
+        } catch {
+            print(error)
+            throw DataError.CouldNotEncode
+        }
+        
     }
     
     //fetch all the continents

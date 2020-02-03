@@ -24,7 +24,7 @@ class DetailViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -61,7 +61,11 @@ class DetailViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            //Notify data model
+            countryList.remove(at: indexPath.row)
+            //Update instance
+            continentsData.deleteCountry(dataIdx: selectedContinent, countryIdx: indexPath.row)
+            //Update table
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -95,15 +99,24 @@ class DetailViewController: UITableViewController {
         return true
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    //called automatically
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
+        //check the id of segue
+        if segue.identifier == "save" {
+            //downcast to access members
+            let source = segue.source as! AddCountryViewController
+            
+            //double check to make sure new country name is not empty
+            if source.addedCountry.isEmpty == false {
+                //add new country to data model (notify of changes)
+                continentsData.addCountry(dataIdx: selectedContinent, newCountry: source.addedCountry, countryIdx: countryList.count)
+                //add to working copy
+                countryList.append(source.addedCountry)
+                //update table view based on data changes
+                tableView.reloadData()
+            }
+        }
     }
-    */
 
 }

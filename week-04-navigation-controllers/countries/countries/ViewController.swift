@@ -16,7 +16,14 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        //get app instance
+        let app = UIApplication.shared
+        
+        //subscribe to willResignActive notification
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: app)
+        
+        //subscribe to
+        
         do {
             try continentsDataController.loadData()
             continentsList = continentsDataController.getContinents()
@@ -27,6 +34,15 @@ class ViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
+    //called automatically when UIApplicationWillResignActive notification is posted for our app
+    //needs to take an NSNotification as parameter
+    @objc func applicationWillResignActive(_ notification: NSNotification) {
+        do {
+            try continentsDataController.writeData()
+        } catch {
+            print(error)
+        }
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return continentsList.count
     }
@@ -49,6 +65,18 @@ class ViewController: UITableViewController {
                 detailVC.title = continentsList[selection]
                 detailVC.continentsData = continentsDataController
             }
+        } else if segue.identifier == "ContinentSegue" {
+            //get access to destination controller (need to downcast)
+            let infoVC = segue.destination as! ContinentInfoTableViewController
+            //get the selected cell
+            let indexPath = tableView.indexPath(for: sender as! UITableViewCell)
+            //set the continent name in destination
+            infoVC.continent = continentsList[indexPath!.row]
+            //get the country list
+            let countryList = continentsDataController.getCountries(idx: indexPath!.row)
+            //set number of countries (cast integer to string)
+            infoVC.number = String(countryList.count)
+            infoVC.title = continentsList[indexPath!.row]
         }
     }
 }
