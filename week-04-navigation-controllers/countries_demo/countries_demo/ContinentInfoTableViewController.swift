@@ -1,23 +1,28 @@
 //
-//  DetailViewController.swift
+//  ContinentInfoTableViewController.swift
 //  countries_demo
 //
-//  Created by Isaac Sheets on 2/6/20.
+//  Created by Isaac Sheets on 2/13/20.
 //  Copyright © 2020 Isaac Sheets. All rights reserved.
 //
 
 import UIKit
 
-class DetailViewController: UITableViewController {
+class ContinentInfoTableViewController: UITableViewController {
+    //initialize variables for content
+    var continent = String()
+    var number = String()
     
-    var selectedContinent = 0
-    var continentsDataController = ContinentsDataController()
-    var countryList = [String]()
+    //connections to detail labels
+    @IBOutlet weak var continentName: UILabel!
+    @IBOutlet weak var countryNumber: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
-        countryList = continentsDataController.getCountries(idx: selectedContinent)
+        //set label text
+        continentName.text = continent
+        countryNumber.text = number
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,92 +30,55 @@ class DetailViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
-        
-        if segue.identifier == "save" {
-            let source = segue.source as! AddCountryViewController
-            
-            if source.addedCountry.isEmpty == false {
-                
-                //update the model
-                continentsDataController.addCountry(dataIdx: selectedContinent, newCountry: source.addedCountry, countryIdx: countryList.count)
-                
-                //update local copy
-                countryList.append(source.addedCountry)
-                
-                //update the table view
-                tableView.reloadData()
-            }
-        }
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countryList.count
-    }
-
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = countryList[indexPath.row]
 
         return cell
     }
+    */
 
+    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    
+    */
 
+    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            //notify the model
-            continentsDataController.deleteCountry(dataIdx: selectedContinent, countryIdx: indexPath.row)
-            
-            //update local copy
-            countryList.remove(at: indexPath.row)
-            
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
+    */
 
-
+    /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        
-        let fromRow = fromIndexPath.row
-        let toRow = to.row
-        
-        let moveCountry = countryList[fromRow]
-        
-        countryList.swapAt(fromRow, toRow)
-        
-        //notify data model/controller
-        continentsDataController.deleteCountry(dataIdx: selectedContinent, countryIdx: fromRow)
-        continentsDataController.addCountry(dataIdx: selectedContinent, newCountry: moveCountry, countryIdx: toRow)
 
     }
+    */
 
+    /*
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
+    */
 
     /*
     // MARK: - Navigation
