@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //need to conform to Codable protocol since we'll be encoding and decoding
 struct ContinentsDataModel: Codable {
@@ -24,6 +25,13 @@ class ContinentsDataController {
     var allData = [ContinentsDataModel]()
     let fileName = "continents2"
     let dataFileName = "data.plist"
+    
+    init() {
+        //get our app instance
+        let app = UIApplication.shared
+        //subscribe to willResignActive notification
+        NotificationCenter.default.addObserver(self, selector: #selector(ContinentsDataController.writeData(_:)), name: UIApplication.willResignActiveNotification, object: app)
+    }
     
     //load data from plist
     func loadData() throws {
@@ -69,7 +77,8 @@ class ContinentsDataController {
     }
 
     
-    func writeData() throws {
+    @objc func writeData(_ notification: NSNotification) throws {
+        print("Writing data to \(dataFileName)")
         let dataFileURL = getDataFile(datafile: dataFileName)
         //get an encoder
         let encoder = PropertyListEncoder()

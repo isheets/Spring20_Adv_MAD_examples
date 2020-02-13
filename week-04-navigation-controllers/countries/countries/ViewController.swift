@@ -16,14 +16,7 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //get app instance
-        let app = UIApplication.shared
-
-        //subscribe to willResignActive notification
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: app)
-        
-        //subscribe to
-        
+                
         do {
             try continentsDataController.loadData()
             continentsList = continentsDataController.getContinents()
@@ -32,16 +25,6 @@ class ViewController: UITableViewController {
         }
         
         navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    //called automatically when UIApplicationWillResignActive notification is posted for our app
-    //needs to take an NSNotification as parameter
-    @objc func applicationWillResignActive(_ notification: NSNotification) {
-        do {
-            try continentsDataController.writeData()
-        } catch {
-            print(error)
-        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
