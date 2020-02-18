@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  petitions
+//  Campsites
 //
 //  Created by Isaac Sheets on 2/18/20.
 //  Copyright © 2020 Isaac Sheets. All rights reserved.
