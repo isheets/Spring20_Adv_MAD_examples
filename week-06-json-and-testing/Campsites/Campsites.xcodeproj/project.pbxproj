@@ -15,6 +15,8 @@
 		6A05FBC023FC69CE0026CB1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A05FBBE23FC69CE0026CB1B /* LaunchScreen.storyboard */; };
 		6A05FBC823FC6F560026CB1B /* Campsite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A05FBC723FC6F560026CB1B /* Campsite.swift */; };
 		6A05FBCA23FC70470026CB1B /* CampsiteDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A05FBC923FC70470026CB1B /* CampsiteDataController.swift */; };
+		6A05FBCC23FDE07F0026CB1B /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A05FBCB23FDE07F0026CB1B /* ResultsViewController.swift */; };
+		6A05FBCE23FDE6D30026CB1B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A05FBCD23FDE6D30026CB1B /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		6A05FBC123FC69CE0026CB1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A05FBC723FC6F560026CB1B /* Campsite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campsite.swift; sourceTree = "<group>"; };
 		6A05FBC923FC70470026CB1B /* CampsiteDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampsiteDataController.swift; sourceTree = "<group>"; };
+		6A05FBCB23FDE07F0026CB1B /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		6A05FBCD23FDE6D30026CB1B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +66,10 @@
 			children = (
 				6A05FBB323FC69CD0026CB1B /* AppDelegate.swift */,
 				6A05FBB523FC69CD0026CB1B /* SceneDelegate.swift */,
-				6A05FBB723FC69CD0026CB1B /* ViewController.swift */,
 				6A05FBB923FC69CD0026CB1B /* Main.storyboard */,
+				6A05FBB723FC69CD0026CB1B /* ViewController.swift */,
+				6A05FBCB23FDE07F0026CB1B /* ResultsViewController.swift */,
+				6A05FBCD23FDE6D30026CB1B /* DetailViewController.swift */,
 				6A05FBC723FC6F560026CB1B /* Campsite.swift */,
 				6A05FBC923FC70470026CB1B /* CampsiteDataController.swift */,
 				6A05FBBC23FC69CE0026CB1B /* Assets.xcassets */,
@@ -149,6 +155,8 @@
 				6A05FBB423FC69CD0026CB1B /* AppDelegate.swift in Sources */,
 				6A05FBB623FC69CD0026CB1B /* SceneDelegate.swift in Sources */,
 				6A05FBC823FC6F560026CB1B /* Campsite.swift in Sources */,
+				6A05FBCC23FDE07F0026CB1B /* ResultsViewController.swift in Sources */,
+				6A05FBCE23FDE6D30026CB1B /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

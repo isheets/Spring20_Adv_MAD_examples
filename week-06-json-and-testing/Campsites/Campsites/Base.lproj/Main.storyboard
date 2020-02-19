@@ -25,6 +25,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uld-Qa-eNV">
                                 <rect key="frame" x="183" y="587" width="48" height="30"/>
                                 <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="searchCampsites:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OcR-8V-0Ph"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a state" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYy-N2-ir5">
                                 <rect key="frame" x="117" y="245" width="180" height="34"/>
@@ -45,11 +48,127 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search Campsites" id="efZ-9H-pgh"/>
+                    <navigationItem key="navigationItem" title="Search Campsites" id="efZ-9H-pgh">
+                        <barButtonItem key="backBarButtonItem" title="Search" id="gEn-Ns-vkp"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="VC9-kx-Jfx" kind="show" identifier="SearchResults" id="bie-PX-Bl2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="126.5625"/>
+        </scene>
+        <!--Campsites-->
+        <scene sceneID="Mvo-rg-dD1">
+            <objects>
+                <tableViewController id="VC9-kx-Jfx" customClass="ResultsViewController" customModule="Campsites" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sl2-Pn-BAh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CampsiteCell" textLabel="85n-Wa-ZJn" style="IBUITableViewCellStyleDefault" id="juk-Rz-oR0">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="juk-Rz-oR0" id="lY0-WO-ILd">
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="85n-Wa-ZJn">
+                                            <rect key="frame" x="20" y="0.0" width="355" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="y00-DV-1eZ" kind="show" identifier="DetailSegue" id="JM3-tk-qKw"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="VC9-kx-Jfx" id="5Xs-F1-FMM"/>
+                            <outlet property="delegate" destination="VC9-kx-Jfx" id="TwF-II-dn5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Campsites" id="HtX-B8-aqD">
+                        <barButtonItem key="backBarButtonItem" title="Campsites" id="lIH-JI-7bt"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZDb-fr-ZW2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1841" y="127"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="ZFw-Qv-dEb">
+            <objects>
+                <viewController id="y00-DV-1eZ" customClass="DetailViewController" customModule="Campsites" customModuleProvider="target" sceneMemberID="viewController">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="Tl3-jX-FHD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhn-Ed-xa4">
+                                <rect key="frame" x="20" y="35" width="109" height="27"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwo-PT-vG1">
+                                <rect key="frame" x="20" y="70" width="374" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="hdD-mN-KXp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Directions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5y-Lj-Mzy">
+                                <rect key="frame" x="20" y="106.5" width="97" height="27"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvy-Uf-ilM">
+                                <rect key="frame" x="20" y="141.5" width="374" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="aXs-Ln-v8j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fvy-Uf-ilM" firstAttribute="leading" secondItem="pza-bO-4Mo" secondAttribute="leading" constant="20" id="215-vy-pe6"/>
+                            <constraint firstItem="pza-bO-4Mo" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N5y-Lj-Mzy" secondAttribute="trailing" symbolic="YES" id="EkG-Ph-W1z"/>
+                            <constraint firstItem="Lhn-Ed-xa4" firstAttribute="leading" secondItem="pza-bO-4Mo" secondAttribute="leading" constant="20" id="P8o-S0-NbE"/>
+                            <constraint firstItem="N5y-Lj-Mzy" firstAttribute="leading" secondItem="pza-bO-4Mo" secondAttribute="leading" constant="20" id="QZg-w7-w9f"/>
+                            <constraint firstItem="dwo-PT-vG1" firstAttribute="leading" secondItem="pza-bO-4Mo" secondAttribute="leading" constant="20" id="aGD-Us-S83"/>
+                            <constraint firstItem="pza-bO-4Mo" firstAttribute="trailing" secondItem="dwo-PT-vG1" secondAttribute="trailing" constant="20" id="aL9-YP-suy"/>
+                            <constraint firstItem="Lhn-Ed-xa4" firstAttribute="top" secondItem="pza-bO-4Mo" secondAttribute="top" constant="35" id="aw3-ST-f3V"/>
+                            <constraint firstItem="dwo-PT-vG1" firstAttribute="top" secondItem="Lhn-Ed-xa4" secondAttribute="bottom" constant="8" id="g38-XN-qbB"/>
+                            <constraint firstItem="pza-bO-4Mo" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Lhn-Ed-xa4" secondAttribute="trailing" symbolic="YES" id="org-4B-cAa"/>
+                            <constraint firstItem="pza-bO-4Mo" firstAttribute="trailing" secondItem="fvy-Uf-ilM" secondAttribute="trailing" constant="20" id="rMp-AF-Swo"/>
+                            <constraint firstItem="N5y-Lj-Mzy" firstAttribute="top" secondItem="dwo-PT-vG1" secondAttribute="bottom" constant="16" id="sAY-Ln-PXz"/>
+                            <constraint firstItem="fvy-Uf-ilM" firstAttribute="top" secondItem="N5y-Lj-Mzy" secondAttribute="bottom" constant="8" id="uPe-T1-cbK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pza-bO-4Mo"/>
+                        <viewLayoutGuide key="contentLayoutGuide" id="mFQ-4N-iZh"/>
+                        <viewLayoutGuide key="frameLayoutGuide" id="y9i-0L-Sm3"/>
+                    </scrollView>
+                    <navigationItem key="navigationItem" id="eA3-0r-3Ar"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="dwo-PT-vG1" id="nZu-iM-qFP"/>
+                        <outlet property="directionsLabel" destination="fvy-Uf-ilM" id="Uq6-5b-La0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TSt-gy-FOR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2689.8550724637685" y="126.5625"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WuB-7l-Iet">
