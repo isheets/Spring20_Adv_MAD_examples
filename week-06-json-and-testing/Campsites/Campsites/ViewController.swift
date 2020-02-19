@@ -34,6 +34,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     //executes the search
     @IBAction func searchCampsites(_ sender: Any) {
         do {
+            //start loading the data
             try campsiteDC.loadJson(stateCode: selectedState)
             //block user events and show spinner while fetching the campsites
             let alert = UIAlertController(title: nil, message: "Searching in \(selectedState)...", preferredStyle: .alert)
@@ -77,15 +78,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return stateOptions.count
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return stateOptions[row]
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedState = stateOptions[row]
     }

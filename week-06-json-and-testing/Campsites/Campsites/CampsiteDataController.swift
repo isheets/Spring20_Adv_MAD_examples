@@ -17,7 +17,7 @@ enum JsonError: Error {
 class CampsiteDataController {
     //stores all of the campsites from the most recent response
     var currentCampsites = CampsiteData()
-    
+    //closure to notify the view controller when the json has been loaded and parsed
     var onDataUpdate: ((_ data: [Campsite]) -> Void)?
     
     //makes the http request based on stateCode parameter
@@ -48,7 +48,7 @@ class CampsiteDataController {
             }
             //download successful
             print("download complete")
-            //parse json
+            //parse json asynch
             DispatchQueue.main.async {self.parseJson(rawData: data!)}
         })
         
@@ -74,11 +74,7 @@ class CampsiteDataController {
         }
         print("parsejson done")
         
+        //pass data back to requesting object
         onDataUpdate?(currentCampsites.data)
-    }
-    
-    //returns the current data
-    func getResults() -> [Campsite] {
-        return currentCampsites.data
     }
 }
