@@ -8,12 +8,6 @@
 
 import Foundation
 
-enum JsonError: Error {
-    case BadURL
-    case BadResponse
-    case CouldNotParse
-}
-
 class CampsiteDataController {
     //stores all of the campsites from the most recent response
     var currentCampsites = CampsiteData()
@@ -21,13 +15,14 @@ class CampsiteDataController {
     var onDataUpdate: ((_ data: [Campsite]) -> Void)?
     
     //makes the http request based on stateCode parameter
-    func loadJson(stateCode: String) throws {
+    func loadJson(stateCode: String) {
         //construct URL by interpolating the state code into
         let urlPath = "https://developer.nps.gov/api/v1/campgrounds?stateCode=\(stateCode)&api_key=KuzYWrSKHbuz6CBO8oc0pX35CeljxNSfgxane4IH"
         
         //use a guard statement with conditional unwrapping to make sure the url is valid
         guard let url = URL(string: urlPath) else {
-            throw JsonError.BadURL
+            print("bad url")
+            return
         }
         
         //valid url so make the request and give it a completetion handler closure
@@ -40,7 +35,7 @@ class CampsiteDataController {
             
             //make sure we got a good response
             guard statusCode == 200 else {
-                print("file download error")
+                print("file download error. status code: \(statusCode)")
                 return
             }
             //download successful

@@ -33,22 +33,18 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     //executes the search
     @IBAction func searchCampsites(_ sender: Any) {
-        do {
-            //start loading the data
-            try campsiteDC.loadJson(stateCode: selectedState)
-            //block user events and show spinner while fetching the campsites
-            let alert = UIAlertController(title: nil, message: "Searching in \(selectedState)...", preferredStyle: .alert)
+        //start loading the data
+        campsiteDC.loadJson(stateCode: selectedState)
+        //block user events and show spinner while fetching the campsites
+        let alert = UIAlertController(title: nil, message: "Searching in \(selectedState)...", preferredStyle: .alert)
 
-            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 5, width: 50, height: 50))
-            loadingIndicator.hidesWhenStopped = true
-            loadingIndicator.style = UIActivityIndicatorView.Style.medium
-            loadingIndicator.startAnimating();
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
 
-            alert.view.addSubview(loadingIndicator)
-            present(alert, animated: true, completion: nil)
-        } catch {
-            print(error)
-        }
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
     }
     
     //called when the json data has been parsed
