@@ -29,9 +29,6 @@ class CampsiteDataController {
         guard let url = URL(string: urlPath) else {
             throw JsonError.BadURL
         }
-        let group = DispatchGroup()
-        group.enter()
-        
         
         //valid url so make the request and give it a completetion handler closure
         let session = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
