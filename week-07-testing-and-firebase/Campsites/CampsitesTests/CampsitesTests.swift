@@ -17,7 +17,7 @@ enum ResponseError: Error {
 class CampsitesTests: XCTestCase {
     var sut: CampsiteDataController!
     var data: Data!
-    var url: URL?
+    var url: URL!
     var promise: XCTestExpectation!
     
     
@@ -39,42 +39,36 @@ class CampsitesTests: XCTestCase {
         super.tearDown()
     }
     
-    func test_parseJson_invalid_response() {
-        // given
-        promise = expectation(description: "Status code: 404")
-        let urlResponse = HTTPURLResponse(url: url!, statusCode: 404, httpVersion: nil, headerFields: nil)
-        let sessionMock = URLSessionMock(data: data, response: urlResponse, error: ResponseError.BadResponse)
-        sut.session = sessionMock
-        sut.onDataUpdate = {[weak self] (data:[Campsite]) in self?.promise.fulfill()}
-
-        // when
-        XCTAssertEqual(sut.currentCampsites.data.count, 0, "currentCampsites should be empty before the data task runs")
-
-        let url = URL(string: "https://developer.nps.gov/api/v1/campgrounds?stateCode=co&api_key=KuzYWrSKHbuz6CBO8oc0pX35CeljxNSfgxane4IH")
-        
-        let dataTask = sut.session.dataTask(with: url!, completionHandler: sut.responseHandler)
-
-        dataTask.resume()
-        wait(for: [promise], timeout: 5)
-
-        // then
-        XCTAssertEqual(sut.currentCampsites.data.count, 0, "Didn't parse 17 items from fake JSON response")
-    }
-    
-    func test_parseJson_valid_response() {
-        // given
+    func test_parseMockJson() {
+        //MARK: given
         promise = expectation(description: "Status code: 200")
-        let urlResponse = HTTPURLResponse(url: url!, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let urlResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
         let sessionMock = URLSessionMock(data: data, response: urlResponse, error: nil)
         sut.session = sessionMock
-
+        
+        //fulfill out promise
         sut.onDataUpdate = {[weak self] (data:[Campsite]) in self?.promise.fulfill()}
 
-        // when
+        //MARK: when
         XCTAssertEqual(sut.currentCampsites.data.count, 0, "currentCampsites should be empty before the data task runs")
-
-        let url = URL(string: "https://developer.nps.gov/api/v1/campgrounds?stateCode=co&api_key=KuzYWrSKHbuz6CBO8oc0pX35CeljxNSfgxane4IH")
-        let dataTask = sut.session.dataTask(with: url!, completionHandler: sut.responseHandler)
+        
+        let dataTask = sut.session.dataTask(with: url!, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //downcase to URLResponse since we made and https request
+            let httpResponse = response as! HTTPURLResponse
+            
+            //get the status code
+            let statusCode = httpResponse.statusCode
+            
+            //make sure we got a good response
+            guard statusCode == 200 else {
+                print("file download error. status code: \(statusCode)")
+                return
+            }
+            //download successful
+            print("download complete")
+            //parse json asynch
+            DispatchQueue.main.async {self.sut.parseJson(rawData: data!)}
+        })
 
         dataTask.resume()
         wait(for: [promise], timeout: 5)
