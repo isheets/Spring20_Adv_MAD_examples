@@ -86,6 +86,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print("selected: \(stateOptions[row])")
         selectedState = stateOptions[row]
         searchButton.titleLabel?.text = "Search in \(stateOptions[row])"
     }

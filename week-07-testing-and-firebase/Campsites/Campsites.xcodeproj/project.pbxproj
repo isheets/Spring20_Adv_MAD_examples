@@ -18,7 +18,6 @@
 		6A05FBCC23FDE07F0026CB1B /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A05FBCB23FDE07F0026CB1B /* ResultsViewController.swift */; };
 		6A05FBCE23FDE6D30026CB1B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A05FBCD23FDE6D30026CB1B /* DetailViewController.swift */; };
 		6A8C3B1E240341A6001C31EA /* CampsitesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8C3B1D240341A6001C31EA /* CampsitesTests.swift */; };
-		6A8C3B2C240341B2001C31EA /* CampsitesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8C3B2B240341B2001C31EA /* CampsitesUITests.swift */; };
 		6A8C3B342403477A001C31EA /* sample-campground-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A8C3B3324034779001C31EA /* sample-campground-response.json */; };
 		6A8C3B3824034A0B001C31EA /* DHURLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8C3B3724034A0B001C31EA /* DHURLSessionMock.swift */; };
 /* End PBXBuildFile section */
@@ -57,8 +56,6 @@
 		6A8C3B1D240341A6001C31EA /* CampsitesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampsitesTests.swift; sourceTree = "<group>"; };
 		6A8C3B1F240341A6001C31EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A8C3B29240341B2001C31EA /* CampsitesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CampsitesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A8C3B2B240341B2001C31EA /* CampsitesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampsitesUITests.swift; sourceTree = "<group>"; };
-		6A8C3B2D240341B2001C31EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A8C3B3324034779001C31EA /* sample-campground-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "sample-campground-response.json"; path = "../../sample-campground-response.json"; sourceTree = "<group>"; };
 		6A8C3B3724034A0B001C31EA /* DHURLSessionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHURLSessionMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,7 +90,6 @@
 			children = (
 				6A05FBB223FC69CD0026CB1B /* Campsites */,
 				6A8C3B1C240341A6001C31EA /* CampsitesTests */,
-				6A8C3B2A240341B2001C31EA /* CampsitesUITests */,
 				6A05FBB123FC69CD0026CB1B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -135,15 +131,6 @@
 				6A8C3B3324034779001C31EA /* sample-campground-response.json */,
 			);
 			path = CampsitesTests;
-			sourceTree = "<group>";
-		};
-		6A8C3B2A240341B2001C31EA /* CampsitesUITests */ = {
-			isa = PBXGroup;
-			children = (
-				6A8C3B2B240341B2001C31EA /* CampsitesUITests.swift */,
-				6A8C3B2D240341B2001C31EA /* Info.plist */,
-			);
-			path = CampsitesUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,7 +288,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A8C3B2C240341B2001C31EA /* CampsitesUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
