@@ -14,8 +14,6 @@ class CampsiteDataController {
     //closure to notify the view controller when the json has been loaded and parsed
     var onDataUpdate: ((_ data: [Campsite]) -> Void)?
     
-    //URL session property with default intial value, needed for testing
-    var session: DHURLSession = URLSession(configuration: URLSessionConfiguration.default)
     
     //makes the http request based on stateCode parameter
     func loadJson(stateCode: String) {
@@ -29,7 +27,7 @@ class CampsiteDataController {
         }
         
         //valid url so make the request and give it a completetion handler closure
-        let dataTask = session.dataTask(with: url, completionHandler: {(data, response, error) in
+        let dataTask = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
             //downcase to URLResponse since we made and https request
             let httpResponse = response as! HTTPURLResponse
             

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A03DCE424056F1B00831390 /* sample-campground-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A03DCE324056F1B00831390 /* sample-campground-response.json */; };
 		6A05FBB423FC69CD0026CB1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A05FBB323FC69CD0026CB1B /* AppDelegate.swift */; };
 		6A05FBB623FC69CD0026CB1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A05FBB523FC69CD0026CB1B /* SceneDelegate.swift */; };
 		6A05FBB823FC69CD0026CB1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A05FBB723FC69CD0026CB1B /* ViewController.swift */; };
@@ -18,8 +19,6 @@
 		6A05FBCC23FDE07F0026CB1B /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A05FBCB23FDE07F0026CB1B /* ResultsViewController.swift */; };
 		6A05FBCE23FDE6D30026CB1B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A05FBCD23FDE6D30026CB1B /* DetailViewController.swift */; };
 		6A8C3B742404A8BF001C31EA /* CampsitesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8C3B732404A8BF001C31EA /* CampsitesTests.swift */; };
-		6A8C3B7C2404B4B6001C31EA /* DHURLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8C3B7B2404B4B6001C31EA /* DHURLSessionMock.swift */; };
-		6A8C3B7E2404B51F001C31EA /* sample-campground-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A8C3B7D2404B51F001C31EA /* sample-campground-response.json */; };
 		6A8C3B802404B7A2001C31EA /* CampsitesDataControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8C3B7F2404B7A2001C31EA /* CampsitesDataControllerTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6A03DCE324056F1B00831390 /* sample-campground-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "sample-campground-response.json"; path = "../../sample-campground-response.json"; sourceTree = "<group>"; };
 		6A05FBB023FC69CD0026CB1B /* Campsites.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Campsites.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A05FBB323FC69CD0026CB1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A05FBB523FC69CD0026CB1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,8 +49,6 @@
 		6A8C3B712404A8BF001C31EA /* CampsitesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CampsitesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A8C3B732404A8BF001C31EA /* CampsitesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampsitesTests.swift; sourceTree = "<group>"; };
 		6A8C3B752404A8BF001C31EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6A8C3B7B2404B4B6001C31EA /* DHURLSessionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DHURLSessionMock.swift; path = ../../../DHURLSessionMock.swift; sourceTree = "<group>"; };
-		6A8C3B7D2404B51F001C31EA /* sample-campground-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "sample-campground-response.json"; path = "../../../sample-campground-response.json"; sourceTree = "<group>"; };
 		6A8C3B7F2404B7A2001C31EA /* CampsitesDataControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampsitesDataControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,7 +101,6 @@
 				6A05FBC923FC70470026CB1B /* CampsiteDataController.swift */,
 				6A05FBBC23FC69CE0026CB1B /* Assets.xcassets */,
 				6A05FBBE23FC69CE0026CB1B /* LaunchScreen.storyboard */,
-				6A8C3B7B2404B4B6001C31EA /* DHURLSessionMock.swift */,
 				6A05FBC123FC69CE0026CB1B /* Info.plist */,
 			);
 			path = Campsites;
@@ -114,7 +111,7 @@
 			children = (
 				6A8C3B732404A8BF001C31EA /* CampsitesTests.swift */,
 				6A8C3B752404A8BF001C31EA /* Info.plist */,
-				6A8C3B7D2404B51F001C31EA /* sample-campground-response.json */,
+				6A03DCE324056F1B00831390 /* sample-campground-response.json */,
 				6A8C3B7F2404B7A2001C31EA /* CampsitesDataControllerTests.swift */,
 			);
 			path = CampsitesTests;
@@ -211,7 +208,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A8C3B7E2404B51F001C31EA /* sample-campground-response.json in Resources */,
+				6A03DCE424056F1B00831390 /* sample-campground-response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +225,6 @@
 				6A05FBB623FC69CD0026CB1B /* SceneDelegate.swift in Sources */,
 				6A05FBC823FC6F560026CB1B /* Campsite.swift in Sources */,
 				6A05FBCC23FDE07F0026CB1B /* ResultsViewController.swift in Sources */,
-				6A8C3B7C2404B4B6001C31EA /* DHURLSessionMock.swift in Sources */,
 				6A05FBCE23FDE6D30026CB1B /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
