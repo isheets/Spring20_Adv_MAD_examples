@@ -16,18 +16,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IGF-Xb-RL0">
-                                <rect key="frame" x="0.0" y="287" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="287" width="0.0" height="216"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="vGh-QO-Nfi"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="jPY-Rw-D9n"/>
                                 </connections>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uld-Qa-eNV">
-                                <rect key="frame" x="20" y="587" width="374" height="34"/>
-                                <accessibility key="accessibilityConfiguration" identifier="searchButton"/>
-                                <state key="normal" title="Search in CO">
-                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uld-Qa-eNV">
+                                <rect key="frame" x="183" y="587" width="48" height="30"/>
+                                <state key="normal" title="Search"/>
                                 <connections>
                                     <action selector="searchCampsites:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OcR-8V-0Ph"/>
                                 </connections>
@@ -42,11 +39,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="IGF-Xb-RL0" firstAttribute="top" secondItem="KYy-N2-ir5" secondAttribute="bottom" constant="8" id="0x8-o8-hOw"/>
-                            <constraint firstItem="uld-Qa-eNV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="8eV-26-OHI"/>
                             <constraint firstItem="IGF-Xb-RL0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Af8-hI-2BH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uld-Qa-eNV" secondAttribute="trailing" constant="20" id="BQ0-1b-YeU"/>
                             <constraint firstItem="KYy-N2-ir5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vnk-0L-eJO"/>
                             <constraint firstItem="IGF-Xb-RL0" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ZLu-fk-hRn"/>
+                            <constraint firstItem="uld-Qa-eNV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cKy-VF-odz"/>
                             <constraint firstItem="KYy-N2-ir5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="157" id="iZv-SS-g2R"/>
                             <constraint firstItem="uld-Qa-eNV" firstAttribute="top" secondItem="IGF-Xb-RL0" secondAttribute="bottom" constant="84" id="q77-aX-0rG"/>
                         </constraints>
@@ -56,7 +52,6 @@
                         <barButtonItem key="backBarButtonItem" title="Search" id="gEn-Ns-vkp"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchButton" destination="uld-Qa-eNV" id="6LG-ZN-Mhw"/>
                         <segue destination="VC9-kx-Jfx" kind="show" identifier="SearchResults" id="bie-PX-Bl2"/>
                     </connections>
                 </viewController>

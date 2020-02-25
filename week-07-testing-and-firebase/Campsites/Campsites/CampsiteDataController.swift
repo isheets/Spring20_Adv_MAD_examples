@@ -29,7 +29,7 @@ class CampsiteDataController {
         }
         
         //valid url so make the request and give it a completetion handler closure
-        let dataTask = session.dataTask(with: url, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+        let dataTask = session.dataTask(with: url, completionHandler: {(data, response, error) in
             //downcase to URLResponse since we made and https request
             let httpResponse = response as! HTTPURLResponse
             

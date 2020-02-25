@@ -20,14 +20,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var data = [Campsite]()
     
 
-    @IBOutlet weak var searchButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //set the intial state
         selectedState = stateOptions[0]
-        searchButton.titleLabel?.text = "Search in \(stateOptions[0])"
         
         //set the function to notify when response is complete
         campsiteDC.onDataUpdate = {[weak self] (data:[Campsite]) in self?.searchDone(campsites: data)}
@@ -86,9 +84,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("selected: \(stateOptions[row])")
         selectedState = stateOptions[row]
-        searchButton.titleLabel?.text = "Search in \(stateOptions[row])"
     }
     
     
