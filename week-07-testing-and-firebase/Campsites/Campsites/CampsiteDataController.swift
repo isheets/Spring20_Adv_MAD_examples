@@ -14,6 +14,7 @@ class CampsiteDataController {
     //closure to notify the view controller when the json has been loaded and parsed
     var onDataUpdate: ((_ data: [Campsite]) -> Void)?
     
+    //URL session property with default intial value, needed for testing
     var session: DHURLSession = URLSession(configuration: URLSessionConfiguration.default)
     
     //makes the http request based on stateCode parameter
