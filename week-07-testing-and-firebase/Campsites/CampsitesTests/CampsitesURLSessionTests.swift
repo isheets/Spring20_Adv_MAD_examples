@@ -26,6 +26,7 @@ class CampsitesURLSessionTests: XCTestCase {
 
     func test_ValidCallToNPSGets200Response() {
         //MARK: given
+        //make sure you use a valid url
         let url = URL(string: "https://developer.nps.gov/api/v1/campgrounds?stateCode=co&api_key=KuzYWrSKHbuz6CBO8oc0pX35CeljxNSfgxane4IH")
         //we guarantee that the completino handler will be invoked
         let promise = expectation(description: "Completion handler invoked")

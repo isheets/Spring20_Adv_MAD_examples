@@ -28,10 +28,10 @@ class CampsitesTests: XCTestCase {
     
     func test_parseMockJson() {
         //MARK: GIVEN
-        let promise = expectation(description: "Status code: 200")
+        let promise = expectation(description: "Json parsed")
         //get access to the bundle for our test target
         let testBundle = Bundle(for: type(of: self))
-        //get path of sample json data file
+        //get path of sample json static data file
         let path = testBundle.path(forResource: "sample-campground-response", ofType: "json")
         //load contents of file into byte buffer
         let data = try? Data(contentsOf: URL(fileURLWithPath: path!), options: .alwaysMapped)
