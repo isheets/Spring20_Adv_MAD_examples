@@ -9,23 +9,30 @@
 import UIKit
 
 class RunTableViewController: UITableViewController {
-
-    //outlet connections
+    
+    //instantiate data controller
+    var runDC = RunDataController()
+    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //set data update listener
+        runDC.onDataUpdate = {[weak self] (data: [Run]) -> Void in self?.newData(data: data)}
+        
+        //load the data
+        runDC.loadData()
     }
     
     @IBAction func unwindSegue(segue: UIStoryboardSegue) {
         
     }
+    
+    func newData(data: [Run]) {
+            print(data)
+    }
+    
 
     // MARK: - Table view data source
 
