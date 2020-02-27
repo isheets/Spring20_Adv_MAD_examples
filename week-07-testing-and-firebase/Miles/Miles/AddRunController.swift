@@ -15,10 +15,10 @@ class AddRunController: UIViewController, UITextFieldDelegate, UITextViewDelegat
     @IBOutlet weak var milesTextField: UITextField!
     @IBOutlet weak var notesTextView: UITextView!
     
-    //action connection for date picker
-    @IBAction func datePickerChanged(_ sender: Any) {
-    
-    }
+    //user input variables
+    var notes: String?
+    var date: Date?
+    var miles: Double?
     
     
     override func viewDidLoad() {
@@ -41,14 +41,23 @@ class AddRunController: UIViewController, UITextFieldDelegate, UITextViewDelegat
       self.view.endEditing(true)
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        //check to make sure we're only saving when the user presses save button
+        if segue.identifier == "SaveSegue" {
+            //check to make sure they at least entered mileage
+            if let userMiles = Double(milesTextField.text!) {
+                miles = userMiles
+                date = datePicker.date
+                if notesTextView.text.isEmpty == false {
+                    notes = notesTextView.text
+                }
+            } else {
+                print("Not a valid mileage: \(milesTextField.text!)")
+            }
+        }
     }
-    */
 
 }

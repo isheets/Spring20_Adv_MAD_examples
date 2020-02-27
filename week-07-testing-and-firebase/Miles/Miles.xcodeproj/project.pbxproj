@@ -17,6 +17,7 @@
 		6AF9F54F24070F950042430C /* RunTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9F54E24070F950042430C /* RunTableViewController.swift */; };
 		6AF9F55124070FB90042430C /* AddRunController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9F55024070FB90042430C /* AddRunController.swift */; };
 		6AF9F5532407182B0042430C /* RunDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9F5522407182B0042430C /* RunDataController.swift */; };
+		6AF9F555240737860042430C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9F554240737860042430C /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		6AF9F54E24070F950042430C /* RunTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunTableViewController.swift; sourceTree = "<group>"; };
 		6AF9F55024070FB90042430C /* AddRunController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRunController.swift; sourceTree = "<group>"; };
 		6AF9F5522407182B0042430C /* RunDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDataController.swift; sourceTree = "<group>"; };
+		6AF9F554240737860042430C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		AAF633D299FACD516AE7C357 /* Pods_Miles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Miles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA61FB3B7C697683C670D678 /* Pods-Miles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Miles.debug.xcconfig"; path = "Target Support Files/Pods-Miles/Pods-Miles.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +91,7 @@
 				6AA4E2122406F0AD0066BE15 /* AppDelegate.swift */,
 				6AA4E2142406F0AD0066BE15 /* SceneDelegate.swift */,
 				6AA4E2182406F0AD0066BE15 /* Main.storyboard */,
+				6AF9F554240737860042430C /* DetailViewController.swift */,
 				6AF9F54E24070F950042430C /* RunTableViewController.swift */,
 				6AF9F55024070FB90042430C /* AddRunController.swift */,
 				6AF9F5522407182B0042430C /* RunDataController.swift */,
@@ -237,6 +240,7 @@
 				6AF9F5532407182B0042430C /* RunDataController.swift in Sources */,
 				6AF9F54F24070F950042430C /* RunTableViewController.swift in Sources */,
 				6AA4E2132406F0AD0066BE15 /* AppDelegate.swift in Sources */,
+				6AF9F555240737860042430C /* DetailViewController.swift in Sources */,
 				6AA4E2152406F0AD0066BE15 /* SceneDelegate.swift in Sources */,
 				6AF9F55124070FB90042430C /* AddRunController.swift in Sources */,
 			);

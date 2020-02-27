@@ -39,6 +39,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="iFK-Qy-jE6" kind="show" identifier="DetailSegue" id="Yv7-Dp-Ckc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -57,6 +60,86 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIz-Sv-Ug0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="77" y="133"/>
+        </scene>
+        <!--Run-->
+        <scene sceneID="Kbk-hT-7Ds">
+            <objects>
+                <viewController id="iFK-Qy-jE6" customClass="DetailViewController" customModule="Miles" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="adK-ay-iEs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="P6L-1s-DPL">
+                                <rect key="frame" x="20" y="148.5" width="102.5" height="26.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBy-rz-ji5">
+                                        <rect key="frame" x="0.0" y="0.0" width="50.5" height="26.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Trl-Vs-LFS">
+                                        <rect key="frame" x="60.5" y="0.0" width="42" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="PyR-p8-L4I">
+                                <rect key="frame" x="20" y="114" width="103" height="26.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fK-hZ-iDN">
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="26.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YQ-rb-YGP">
+                                        <rect key="frame" x="61" y="0.0" width="42" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyc-AQ-oZ4">
+                                <rect key="frame" x="20" y="182" width="57" height="26.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IL4-D8-KFf">
+                                <rect key="frame" x="20" y="216" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="PyR-p8-L4I" firstAttribute="leading" secondItem="nZH-9X-jvQ" secondAttribute="leading" constant="20" id="Ai4-Mo-y6k"/>
+                            <constraint firstItem="P6L-1s-DPL" firstAttribute="leading" secondItem="nZH-9X-jvQ" secondAttribute="leading" constant="20" id="EyF-cz-XMX"/>
+                            <constraint firstItem="fyc-AQ-oZ4" firstAttribute="leading" secondItem="nZH-9X-jvQ" secondAttribute="leading" constant="20" id="GgV-Up-FI5"/>
+                            <constraint firstItem="IL4-D8-KFf" firstAttribute="top" secondItem="fyc-AQ-oZ4" secondAttribute="bottom" constant="7.5" id="GnP-iI-oIo"/>
+                            <constraint firstItem="PyR-p8-L4I" firstAttribute="top" secondItem="nZH-9X-jvQ" secondAttribute="top" constant="26" id="MCT-Q1-2SV"/>
+                            <constraint firstItem="fyc-AQ-oZ4" firstAttribute="top" secondItem="P6L-1s-DPL" secondAttribute="bottom" constant="7" id="Tq1-nf-67z"/>
+                            <constraint firstItem="IL4-D8-KFf" firstAttribute="leading" secondItem="nZH-9X-jvQ" secondAttribute="leading" constant="20" id="hTx-7n-uDV"/>
+                            <constraint firstItem="nZH-9X-jvQ" firstAttribute="trailing" secondItem="IL4-D8-KFf" secondAttribute="trailing" constant="20" id="nOl-ky-8MF"/>
+                            <constraint firstItem="P6L-1s-DPL" firstAttribute="top" secondItem="PyR-p8-L4I" secondAttribute="bottom" constant="8" id="thn-68-50w"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nZH-9X-jvQ"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Run" id="kuX-pZ-4bu"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="9YQ-rb-YGP" id="oC6-kh-jkn"/>
+                        <outlet property="milesLabel" destination="Trl-Vs-LFS" id="5jM-zW-xTv"/>
+                        <outlet property="notesLabel" destination="IL4-D8-KFf" id="EYE-yR-GcI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c0U-5a-Csg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="944.92753623188412" y="132.58928571428572"/>
         </scene>
         <!--Add Run Controller-->
         <scene sceneID="tMH-VK-wAx">
@@ -118,10 +201,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="FZ9-av-gGC">
-                                        <rect key="frame" x="0.0" y="34" width="320" height="216"/>
-                                        <connections>
-                                            <action selector="datePickerChanged:" destination="z8V-7Q-DnX" eventType="valueChanged" id="mIp-bL-Oyv"/>
-                                        </connections>
+                                        <rect key="frame" x="0.0" y="34.5" width="320" height="216"/>
                                     </datePicker>
                                 </subviews>
                             </stackView>
@@ -173,7 +253,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0H-tU-12z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="j5M-p2-qy0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="76.811594202898561" y="-539.0625"/>
+            <point key="canvasLocation" x="77" y="-542"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nap-cI-BDO">

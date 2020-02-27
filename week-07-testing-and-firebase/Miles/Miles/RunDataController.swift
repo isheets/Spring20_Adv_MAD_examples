@@ -13,6 +13,13 @@ struct Run {
     var date: Date
     var miles: Double
     var notes: String
+    var id: String
+    
+    func getDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter.string(from: date)
+    }
 }
 
 class RunDataController {
@@ -59,8 +66,11 @@ class RunDataController {
                 let miles = data["Miles"] as? Double
                 let notes = data["Notes"] as! String
                 
+                //get the id
+                let id = doc.documentID
                 //construct object
-                let run = Run(date: date, miles: miles ?? 0, notes: notes)
+                let run = Run(date: date, miles: miles ?? 0, notes: notes, id: id)
+                
                 
                 self.runData.append(run)
             }
@@ -69,7 +79,20 @@ class RunDataController {
         }
     }
     
-    
+    func writeData(date: Date, miles: Double, notes: String) {
+        // Add a second document with a generated ID.
+        db.collection("runs").addDocument(data: [
+            "Date": Timestamp(date: date),
+            "Miles": miles,
+            "Notes": notes,
+        ], completion: { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("new document added successfully!")
+            }
+        })
+    }
 }
 
 
