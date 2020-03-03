@@ -5,6 +5,7 @@
 
 # Firebase Config Files
 GoogleService-Info.plist
+Pods/
 
 # Built application files
 *.apk

@@ -10,12 +10,12 @@
 		6A142419240831620042A644 /* RunTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A142418240831620042A644 /* RunTableViewController.swift */; };
 		6A14241B2408317D0042A644 /* AddRunController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14241A2408317D0042A644 /* AddRunController.swift */; };
 		6A14241D240835A00042A644 /* RunDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14241C240835A00042A644 /* RunDataController.swift */; };
+		6A142421240DD7440042A644 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A142420240DD7440042A644 /* GoogleService-Info.plist */; };
 		6AF9F563240826180042430C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9F562240826180042430C /* AppDelegate.swift */; };
 		6AF9F565240826180042430C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9F564240826180042430C /* SceneDelegate.swift */; };
 		6AF9F56A240826180042430C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AF9F568240826180042430C /* Main.storyboard */; };
 		6AF9F56C2408261A0042430C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AF9F56B2408261A0042430C /* Assets.xcassets */; };
 		6AF9F56F2408261A0042430C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AF9F56D2408261A0042430C /* LaunchScreen.storyboard */; };
-		6AF9F577240826730042430C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AF9F576240826730042430C /* GoogleService-Info.plist */; };
 		EC2149E1A9E5ED92277EC3C3 /* Pods_miles_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E6AC588FFA58D47894D1B1 /* Pods_miles_demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +24,7 @@
 		6A142418240831620042A644 /* RunTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunTableViewController.swift; sourceTree = "<group>"; };
 		6A14241A2408317D0042A644 /* AddRunController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRunController.swift; sourceTree = "<group>"; };
 		6A14241C240835A00042A644 /* RunDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDataController.swift; sourceTree = "<group>"; };
+		6A142420240DD7440042A644 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6AF9F55F240826180042430C /* miles_demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = miles_demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AF9F562240826180042430C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AF9F564240826180042430C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,7 +32,6 @@
 		6AF9F56B2408261A0042430C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AF9F56E2408261A0042430C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6AF9F5702408261A0042430C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6AF9F576240826730042430C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9508E5E3990FAC58285C7E6C /* Pods-miles_demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miles_demo.debug.xcconfig"; path = "Target Support Files/Pods-miles_demo/Pods-miles_demo.debug.xcconfig"; sourceTree = "<group>"; };
 		D30AAC76CF0E9D3B26945E1A /* Pods-miles_demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miles_demo.release.xcconfig"; path = "Target Support Files/Pods-miles_demo/Pods-miles_demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,7 +86,7 @@
 				6AF9F56B2408261A0042430C /* Assets.xcassets */,
 				6AF9F56D2408261A0042430C /* LaunchScreen.storyboard */,
 				6AF9F5702408261A0042430C /* Info.plist */,
-				6AF9F576240826730042430C /* GoogleService-Info.plist */,
+				6A142420240DD7440042A644 /* GoogleService-Info.plist */,
 			);
 			path = miles_demo;
 			sourceTree = "<group>";
@@ -162,7 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AF9F56F2408261A0042430C /* LaunchScreen.storyboard in Resources */,
-				6AF9F577240826730042430C /* GoogleService-Info.plist in Resources */,
+				6A142421240DD7440042A644 /* GoogleService-Info.plist in Resources */,
 				6AF9F56C2408261A0042430C /* Assets.xcassets in Resources */,
 				6AF9F56A240826180042430C /* Main.storyboard in Resources */,
 			);
