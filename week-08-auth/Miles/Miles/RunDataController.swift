@@ -44,54 +44,70 @@ class RunDataController {
     
     //fetch data intially and add a listener for any new data
     func loadData() {
-        db.collection("runs").addSnapshotListener { querySnapshot, error in
-            //make sure we got the collection
-            guard let collection = querySnapshot else {
-                print("Error fetching collection: \(error!)")
-                return
+        	
+        //get the user id of the currently authenticated user
+        let authUserID = Auth.auth().currentUser?.uid
+        if let userID = authUserID {
+            //navigate to the users run collection and add listener
+            db.collection("users").document(userID).collection("runs").addSnapshotListener { querySnapshot, error in
+                //make sure we got the collection
+                guard let collection = querySnapshot else {
+                    print("Error fetching collection: \(error!)")
+                    return
+                }
+                
+                //get the docs
+                let docs = collection.documents
+                
+                //empty our data out
+                self.runData.removeAll()
+                
+                //append to our list
+                for doc in docs {
+                    //get the data dictionary from the document
+                    let data = doc.data()
+                    //get the data fields and downcast to appropriate types
+                    let date = (data["Date"] as! Timestamp).dateValue()
+                    let miles = data["Miles"] as? Double
+                    let notes = data["Notes"] as! String
+                    
+                    //get the id
+                    let id = doc.documentID
+                    //construct object
+                    let run = Run(date: date, miles: miles ?? 0, notes: notes, id: id)
+                    
+                    
+                    self.runData.append(run)
+                }
+                
+                self.onDataUpdate(self.runData)
             }
-            
-            //get the docs
-            let docs = collection.documents
-            
-            //empty our data out
-            self.runData.removeAll()
-            
-            //append to our list
-            for doc in docs {
-                //get the data dictionary from the document
-                let data = doc.data()
-                //get the data fields and downcast to appropriate types
-                let date = (data["Date"] as! Timestamp).dateValue()
-                let miles = data["Miles"] as? Double
-                let notes = data["Notes"] as! String
-                
-                //get the id
-                let id = doc.documentID
-                //construct object
-                let run = Run(date: date, miles: miles ?? 0, notes: notes, id: id)
-                
-                
-                self.runData.append(run)
-            }
-            
-            self.onDataUpdate(self.runData)
+        } else {
+            print("could not read data, no auth user")
         }
     }
     
     func writeData(date: Date, miles: Double, notes: String) {
-        // Add a second document with a generated ID.
-        db.collection("runs").addDocument(data: [
-            "Date": Timestamp(date: date),
-            "Miles": miles,
-            "Notes": notes,
-        ], completion: { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("new document added successfully!")
-            }
-        })
+        
+        //try to
+        let authUserID = Auth.auth().currentUser?.uid
+        if let userID = authUserID {
+            // Add another run document with a generated ID.
+            db.collection("users").document(userID).collection("runs").addDocument(data: [
+                "Date": Timestamp(date: date),
+                "Miles": miles,
+                "Notes": notes,
+            ], completion: { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("new document added successfully!")
+                }
+            })
+        
+        } else {
+            print("could not write, no auth user")
+        }
     }
 }
 

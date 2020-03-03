@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import FirebaseUI
 
-class RunTableViewController: UITableViewController {
+class RunTableViewController: UITableViewController, FUIAuthDelegate {
     
     //instantiate data controller
     var runDC = RunDataController()
@@ -16,13 +17,35 @@ class RunTableViewController: UITableViewController {
     //local data
     var runData = [Run]()
     
+    //auth UI property
+    let authUI = FUIAuth.defaultAuthUI()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //set data update listener
+        
+
+        
+        //present(authViewController!, animated: true, completion: nil)
+        
+        
         runDC.onDataUpdate = {[weak self] (data: [Run]) -> Void in self?.newData(data: data)}
         
         //load the data
         runDC.loadData()
+
+    }
+    
+    func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
+        if let authUser = user {
+            print(authUser.uid)
+            //set data update listener
+            runDC.onDataUpdate = {[weak self] (data: [Run]) -> Void in self?.newData(data: data)}
+            
+            //load the data
+            runDC.loadData()
+        } else {
+            print(error!.localizedDescription)
+        }
     }
     
     @IBAction func unwindSegue(segue: UIStoryboardSegue) {

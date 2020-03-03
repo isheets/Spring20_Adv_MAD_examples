@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xDU-cM-llC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cJl-fo-VeL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -255,11 +255,51 @@
             </objects>
             <point key="canvasLocation" x="77" y="-542"/>
         </scene>
+        <!--Sign In View Controller-->
+        <scene sceneID="W73-wc-K0M">
+            <objects>
+                <viewController id="cJl-fo-VeL" customClass="SignInViewController" customModule="Miles" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XP5-GC-YwK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="IDs-gu-wMd">
+                                <rect key="frame" x="134" y="403.5" width="146" height="89"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YG8-f7-Khh">
+                                        <rect key="frame" x="0.0" y="0.0" width="146" height="41"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xXb-bf-Yn0">
+                                        <rect key="frame" x="0.0" y="59" width="144" height="30"/>
+                                        <state key="normal" title="Sign in to get started"/>
+                                        <connections>
+                                            <action selector="logIn:" destination="cJl-fo-VeL" eventType="touchUpInside" id="lcO-wk-NOo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IDs-gu-wMd" firstAttribute="centerX" secondItem="XP5-GC-YwK" secondAttribute="centerX" id="3fV-m5-OpU"/>
+                            <constraint firstItem="IDs-gu-wMd" firstAttribute="centerY" secondItem="XP5-GC-YwK" secondAttribute="centerY" id="sYR-EA-NYp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jus-SG-mgv"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pAh-1a-blB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1583" y="133"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="nap-cI-BDO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xDU-cM-llC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="rootNav" automaticallyAdjustsScrollViewInsets="NO" id="xDU-cM-llC" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="qb4-Lo-w85"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GeV-Uf-145">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
