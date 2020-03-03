@@ -44,11 +44,11 @@ class RunDataController {
     
     //fetch data intially and add a listener for any new data
     func loadData() {
-        	
+            
         //get the user id of the currently authenticated user
         let authUserID = Auth.auth().currentUser?.uid
         if let userID = authUserID {
-            //navigate to the users run collection and add listener
+            //navigate to the user's run collection and add listener
             db.collection("users").document(userID).collection("runs").addSnapshotListener { querySnapshot, error in
                 //make sure we got the collection
                 guard let collection = querySnapshot else {
@@ -79,20 +79,20 @@ class RunDataController {
                     
                     self.runData.append(run)
                 }
-                
+                //pass data to view controller
                 self.onDataUpdate(self.runData)
             }
         } else {
             print("could not read data, no auth user")
         }
     }
-    
+
     func writeData(date: Date, miles: Double, notes: String) {
         
-        //try to
+        //try to get the authenticated user's ID
         let authUserID = Auth.auth().currentUser?.uid
         if let userID = authUserID {
-            // Add another run document with a generated ID.
+            // Add another run document with a generated ID to the authenticated user's collection of runs
             db.collection("users").document(userID).collection("runs").addDocument(data: [
                 "Date": Timestamp(date: date),
                 "Miles": miles,

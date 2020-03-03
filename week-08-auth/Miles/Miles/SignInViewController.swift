@@ -11,7 +11,7 @@ import FirebaseUI
 
 class SignInViewController: UIViewController, FUIAuthDelegate {
     
-    //default auth UI instance
+    //create default auth UI instance
     let authUI = FUIAuth.defaultAuthUI()
 
     @IBAction func logIn(_ sender: Any) {
@@ -19,7 +19,7 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
         print("trying to present view controller")
         //get the auth navigation controller
         let authViewController = authUI?.authViewController()
-        
+        //hand over control to FirebaseUI
         present(authViewController!, animated: true, completion: nil)
     }
     
@@ -29,7 +29,7 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
         //configure and present the auth UI view controller as the initial entry point for our app
         authUI?.delegate = self
         
-        //config the auth providers
+        //config the auth providers array
         let providers: [FUIAuthProvider] = [
           FUIGoogleAuth()
         ]
@@ -38,29 +38,20 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
         
     }
     
+    //FUIAuthDelegat method which is called when authentication is completed successfully or errors out
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-           if let authUser = user {
-               print(authUser.uid)
-            
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "rootNav")
-                vc.modalPresentationStyle = .fullScreen
-                //present the root view controller
-                present(vc, animated: true, completion: nil)
-           } else {
-               print(error!.localizedDescription)
-           }
-       }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        //make sure we got the user object
+        if user != nil {
+            //get access to storyboard
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //get instance of the root nav controller
+            let vc = storyboard.instantiateViewController(withIdentifier: "rootNav")
+            //set it to full screen instead of popover
+            vc.modalPresentationStyle = .fullScreen
+            //present the root view controller
+            present(vc, animated: true, completion: nil)
+        } else {
+            print(error!.localizedDescription)
+        }
     }
-    */
-
 }
