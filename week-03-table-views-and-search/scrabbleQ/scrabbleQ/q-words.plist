@@ -2,12 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<string>Quit</string>
-	<string>Quite</string>
-	<string>Aqua</string>
-	<string>Quiver</string>
-	<string>Quip</string>
-	<string>Equal</string>
-	<string>Equip</string>
+	<dict>
+		<key>letter</key>
+		<string>words</string>
+		<key>words</key>
+		<array>
+			<dict>
+				<key>word</key>
+				<string></string>
+				<key>wor</key>
+				<string></string>
+			</dict>
+			<dict/>
+		</array>
+	</dict>
+	<string></string>
 </array>
 </plist>

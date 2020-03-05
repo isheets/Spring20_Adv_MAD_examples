@@ -22,6 +22,8 @@ class ViewController: UITableViewController {
         
         //set background color for main view
         view.backgroundColor = .black
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
