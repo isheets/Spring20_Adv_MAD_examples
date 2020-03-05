@@ -15,6 +15,11 @@ class AddRunController: UIViewController, UITextFieldDelegate, UITextViewDelegat
     @IBOutlet weak var milesTextField: UITextField!
     @IBOutlet weak var notesTextView: UITextView!
     
+    //user input
+    var notes : String?
+    var date : Date?
+    var miles : Double?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +29,28 @@ class AddRunController: UIViewController, UITextFieldDelegate, UITextViewDelegat
         self.view.addGestureRecognizer(tapRecognizer)
     }
     
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "SaveSegue" {
+            if let userMiles = Double(milesTextField.text!) {
+                miles = userMiles
+                date = datePicker.date
+                if notesTextView.text.isEmpty == false {
+                    //user entered notes
+                    notes = notesTextView.text
+                }
+            } else {
+                print("Not a valid mileage: \(milesTextField.text!)")
+            }
+        }
+    }
+    
+    
+    
+    //MARK: keyboard dismissal methods
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         //override when user enters newline character
         if text == "\n" {
@@ -37,16 +64,4 @@ class AddRunController: UIViewController, UITextFieldDelegate, UITextViewDelegat
     @objc func didTapView() {
         self.view.endEditing(true)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

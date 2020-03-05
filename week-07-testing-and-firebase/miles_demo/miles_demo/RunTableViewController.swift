@@ -9,9 +9,19 @@
 import UIKit
 
 class RunTableViewController: UITableViewController {
+    //get data controller instance
+    var dc = RunDataController()
+    //all the run objects
+    var runData = [Run]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //pass the data to newData method when done
+        dc.onDataUpdate = {[weak self] (data: [Run]) -> Void in self?.newData(data: data)}
+        
+        //load init data and attach listener for changes
+        dc.loadData()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -20,31 +30,50 @@ class RunTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    func newData(data: [Run]) {
+        //assign data to property
+        runData = data
+        //sort data array by date
+        runData.sort(by: {(r1, r2) in r1.date.compare(r2.date) == .orderedDescending})
+        //update table view
+        tableView.reloadData()
+    }
+    
+    //unwind from AddRunVC
     @IBAction func unwindSegue(segue: UIStoryboardSegue) {
-        //unwind from add run controller
+        if segue.identifier == "SaveSegue" {
+            let source = segue.source as! AddRunController
+            //pass data to data controller with default values just in case
+            dc.writeData(date: source.date ?? Date(), miles: source.miles ?? 0, notes: source.notes ?? "")
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return runData.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RunCell", for: indexPath)
 
+        //get the run object we're working with
+        let run = runData[indexPath.row]
+        
         // Configure the cell...
+        cell.textLabel?.text = run.getDate()
+        cell.detailTextLabel?.text = "\(String(run.miles)) mi"
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
