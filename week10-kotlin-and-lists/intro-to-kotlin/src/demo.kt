@@ -201,13 +201,35 @@ fun main() {
     //region: COLLECTIONS
 
     //LIST
-    val myList = listOf(1,2,3,4,5,6)
+    //immutable (can only perform read operations)
+    val myList = listOf(1,2,3,4,5,6,5,4,3,2,1)
     //myList[0] = 10 //won't compile since this list is read-only
+    println(myList[0])
 
+    //mutable list (can perform read AND write operations)
     val myMutableList = mutableListOf(1,2,3,4,5,6)
     myMutableList[0] = 10
+    println(myMutableList[0])
 
+    //SETS - not necessarily ordered
+    //immutable
+    val mySet = setOf(1,2,3,4,5,6,6,6,6) // create mutable set using mutableSetOf()
+    mySet.map{println(it)}
 
+    //list to set
+    val uniqueList = myList.toSet()
+    myList.map{print(it)}
+    println()
+    uniqueList.map{print(it)}
+    println('\n')
+
+    //MAPS
+    var myMap = mutableMapOf("one" to 1, "two" to 2, "three" to 3)
+    myMap["four"] = 4
+
+    for(pair in myMap.entries) {
+        println("${pair.key} to ${pair.value}")
+    }
 
     //endregion
 }
