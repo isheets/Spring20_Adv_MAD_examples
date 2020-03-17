@@ -286,4 +286,72 @@ fun main() {
     //endregion
     */
 
+    //region: CLASSES and INTERFACES
+
+    //plain class, no constructor
+    class Instrument {
+
+    }
+    //empty instance
+    var myInstrument = Instrument()
+
+    //class with primary constructor
+    open class Food constructor (var name: String, var calories: Int) {
+
+        //private property
+        var rating: Double? = null
+
+        //public method
+        fun eat() {
+            println("eating $name, yummy yum")
+        }
+
+        //init
+        init {
+            println("init your $name!")
+        }
+
+
+
+        //secondary constructor to add a rating
+        constructor(name: String, calories: Int, rating: Double) : this(name, calories) {
+            this.rating = rating
+        }
+
+        //override the toString()
+        override fun toString(): String {
+            return "$name, $calories, ${rating ?: "no rating"}"
+        }
+    }
+    //oatmeal instance
+    var oatmeal = Food("oatmeal", 500)
+    //hummus instance
+    var carrot = Food("carrot", 50, 8.0)
+
+    println(oatmeal)
+    println(carrot)
+
+    carrot.eat()
+
+    //inheritance (add open keyword to parent class)
+    class Snack(name: String, calories: Int, var category: String = "Snack") : Food(name, calories) {
+
+        //secondary constructor for rating functionality
+        constructor(name: String, calories: Int, category: String = "Snack", rating: Double): this(name,calories,category) {
+            this.rating = rating
+        }
+        init {
+            println("making a fun snack: $name")
+        }
+
+    }
+
+    var hummus = Snack("Hummus", 200, rating = 10.0)
+
+    hummus.eat()
+    println(hummus)
+
+    //INTERFACES
+    
+
 }
