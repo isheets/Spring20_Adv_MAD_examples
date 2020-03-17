@@ -1,4 +1,5 @@
 import kotlinx.coroutines.*
+import java.lang.Exception
 
 //the main function is the entry point to our program
 fun main() {
@@ -365,9 +366,7 @@ fun main() {
     //destructure
     val (id, name, email) = user1
 
-    //endregion */
-
-
+    //endregion
 
     //region: COROUTINES
     //basic example
@@ -396,7 +395,31 @@ fun main() {
         println("continuing execution")
     }
 
+    // */
+
+    //region: EXCEPTIONS
+
+    //custom type
+    class MathError(message: String): Exception(message)
+
+    fun divide(dividend: Double, divisor: Double): Double {
+
+        if (divisor == 0.0) {
+            throw MathError("Can't divide by 0!")
+        }
+        else {
+            return dividend/divisor
+        }
+
+    }
+
+    try {
+        val result = divide(50.0, 0.0)
+        println("Successful division: $result")
+    } catch (e: Exception){
+        println("Bad division! ${e.toString()}")
+    } finally {
+        println("I'm done trying")
+    }
     //endregion
-
-
 }
