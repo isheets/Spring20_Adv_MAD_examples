@@ -1,4 +1,4 @@
-import kotlin.reflect.typeOf
+import kotlinx.coroutines.*
 
 //the main function is the entry point to our program
 fun main() {
@@ -284,7 +284,6 @@ fun main() {
     highNums = nums.filter { it >= 100 }
 
     //endregion
-    */
 
     //region: CLASSES and INTERFACES
 
@@ -351,7 +350,53 @@ fun main() {
     hummus.eat()
     println(hummus)
 
-    //INTERFACES
-    
+    println()
+
+    //DATA CLASSES
+
+    data class User(val id: Int, val name: String, val email: String)
+
+    var user1 = User(1,"John", "password123")
+    var copyUser1 = User(1, "John", "password123")
+
+    println(user1)
+    println(user1 == copyUser1)
+
+    //destructure
+    val (id, name, email) = user1
+
+    //endregion */
+
+
+
+    //region: COROUTINES
+    //basic example
+    println("before launching coroutine")
+
+    GlobalScope.launch { // new coroutine in background
+        println("in coroutine")
+        delay(1000) //non-blocking suspension of coroutine execution
+        println("coroutine done")
+    }
+
+    println("Coroutine launched, waiting for result")
+    Thread.sleep(2000L) //sleep the execution of the application so it keeps everything alive until coroutine finishes
+
+    println()
+    //better example
+    runBlocking{ //start a new blocking coroutine on the current thread (main in our case)
+        var asyncJob = GlobalScope.launch { // new coroutine in background
+            println("starting coroutine code")
+            delay(1000) //non-blocking suspension of coroutine execution
+            println("coroutine done")
+        }
+
+        println("launched coroutine")
+        asyncJob.join()
+        println("continuing execution")
+    }
+
+    //endregion
+
 
 }
