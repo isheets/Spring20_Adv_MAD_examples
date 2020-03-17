@@ -196,7 +196,6 @@ fun main() {
     }
 
     //endregion
-    */
 
     //region: COLLECTIONS
 
@@ -232,4 +231,59 @@ fun main() {
     }
 
     //endregion
+
+    //region: FUNCTIONS and LAMBDAS
+
+    //NOTE: these are all local scope functions meaning they are functions within a function (inside of the main() function)
+    //syntax for member functions (inside classes) and top level functions (not inside anything) is the same
+
+    //basic syntax = "fun functionName(parameter1: Type, parameter2: Type): ReturnType {}
+    fun add(x: Int, y: Int): Int {
+        println("Adding $x + $y")
+        return x+y
+    }
+
+    //single expression function with implicit return type
+    fun quickAdd(x: Int, y: Int) = x + y
+
+    println(add(2,2))
+    println(quickAdd(3,3))
+
+    //default, named arguments
+    fun printGreeting(name: String, senderName: String = "A friend", message: String = "" ) {
+        println("Hello $name! $message From: $senderName")
+    }
+
+    printGreeting("Bob")
+    printGreeting(name = "Bill", message = "Hope you're well.")
+    printGreeting(name = "mary", senderName = "Isaac")
+
+    println()
+
+    //LAMBDAS
+    //functions that are not declared but passed immediately as expressions
+    val nums = setOf(1, 6, 3, 22, 10_000, 0, -300, 100, 355, 87)
+    //filter the list to only have items greater than 100
+    var highNums = nums.filter {item -> item >= 100 }
+
+
+    //printing using the map() function is actually another example of a lambda!
+    nums.map { print("$it ,") }
+    println()
+    highNums.map {print("$it ,")}
+
+    //alternate syntax for lambdas
+    //named lambda
+
+    //named lambda (longest syntax, same result)
+    val filterLam: (Int) -> Boolean = { item: Int -> item >= 100 }
+    highNums = nums.filter(filterLam)
+
+    //using implicit parameter name (works when it only takes a single parameter)
+    //shortest syntax, same result
+    highNums = nums.filter { it >= 100 }
+
+    //endregion
+    */
+
 }
