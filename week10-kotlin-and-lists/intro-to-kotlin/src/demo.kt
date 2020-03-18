@@ -3,7 +3,6 @@ import java.lang.Exception
 
 //the main function is the entry point to our program
 fun main() {
-    /*
     //region: CONSTANTS, VARIABLES, AND TYPES
 
     //region: VAR AND VAL
@@ -395,7 +394,7 @@ fun main() {
         println("continuing execution")
     }
 
-    // */
+    //
 
     //region: EXCEPTIONS
 
