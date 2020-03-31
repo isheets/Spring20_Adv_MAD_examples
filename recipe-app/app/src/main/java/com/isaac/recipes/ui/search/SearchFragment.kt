@@ -9,11 +9,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.isaac.recipes.R
 
 class SearchFragment : Fragment() {
 
     private lateinit var searchViewModel: SearchViewModel
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -23,19 +25,17 @@ class SearchFragment : Fragment() {
         //instance of ViewModel
         searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
 
+        val root = inflater.inflate(R.layout.fragment_search, container, false)
+        recyclerView = root.findViewById(R.id.recyclerView)
+
         //subscribe to data changes in the repository class via the ViewModel
         searchViewModel.recipeData.observe(viewLifecycleOwner, Observer {
-            for(recipe in it) {
-                Log.i("recipeLogging", "${recipe.title} serves ${recipe.servings}")
-            }
-
+            //instantiate adapter
+            val adapter = SearchRecyclerAdapter(requireContext(), it)
+            //set the adapter to the recyclerview
+            recyclerView.adapter = adapter
         })
 
-        val root = inflater.inflate(R.layout.fragment_search, container, false)
-        val textView: TextView = root.findViewById(R.id.text_search)
-        searchViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
     }
 }
