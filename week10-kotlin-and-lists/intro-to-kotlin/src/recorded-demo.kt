@@ -90,8 +90,6 @@ fun main() {
 
     //!! operator -- BAD
     println("Score: ${score!!.toString()}")
-    
-
 
     //endregion
 
