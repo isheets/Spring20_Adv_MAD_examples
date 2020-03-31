@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.isaac.recipes.R
 
 class FavoritesFragment : Fragment() {
-
     private lateinit var favoritesViewModel: FavoritesViewModel
 
     override fun onCreateView(
@@ -23,6 +22,8 @@ class FavoritesFragment : Fragment() {
                 ViewModelProvider(this).get(FavoritesViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_favorites, container, false)
         val textView: TextView = root.findViewById(R.id.text_favorites)
+
+        //listen for updates to our LiveData object
         favoritesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
