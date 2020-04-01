@@ -1,0 +1,369 @@
+{
+  "vegetarian": false,
+  "vegan": false,
+  "glutenFree": false,
+  "dairyFree": false,
+  "veryHealthy": false,
+  "cheap": false,
+  "veryPopular": true,
+  "sustainable": false,
+  "weightWatcherSmartPoints": 12,
+  "gaps": "no",
+  "lowFodmap": false,
+  "preparationMinutes": 10,
+  "cookingMinutes": 15,
+  "sourceUrl": "http://DAMNDELICIOUS.NET/2014/03/29/spaghetti-carbonara/",
+  "spoonacularSourceUrl": "https://spoonacular.com/spaghetti-carbonara-535835",
+  "aggregateLikes": 242705,
+  "spoonacularScore": 70,
+  "healthScore": 8,
+  "pricePerServing": 110.05,
+  "extendedIngredients": [
+    {
+      "id": 10123,
+      "aisle": "Meat",
+      "image": "raw-bacon.png",
+      "consistency": "solid",
+      "name": "bacon",
+      "original": "4 slices bacon, diced",
+      "originalString": "4 slices bacon, diced",
+      "originalName": "bacon, diced",
+      "amount": 4,
+      "unit": "slices",
+      "meta": [
+        "diced"
+      ],
+      "metaInformation": [
+        "diced"
+      ],
+      "measures": {
+        "us": {
+          "amount": 4,
+          "unitShort": "slice",
+          "unitLong": "slices"
+        },
+        "metric": {
+          "amount": 4,
+          "unitShort": "slice",
+          "unitLong": "slices"
+        }
+      }
+    },
+    {
+      "id": 1123,
+      "aisle": "Milk, Eggs, Other Dairy",
+      "image": "egg.png",
+      "consistency": "solid",
+      "name": "eggs",
+      "original": "2 large eggs",
+      "originalString": "2 large eggs",
+      "originalName": "eggs",
+      "amount": 2,
+      "unit": "large",
+      "meta": [],
+      "metaInformation": [],
+      "measures": {
+        "us": {
+          "amount": 2,
+          "unitShort": "large",
+          "unitLong": "larges"
+        },
+        "metric": {
+          "amount": 2,
+          "unitShort": "large",
+          "unitLong": "larges"
+        }
+      }
+    },
+    {
+      "id": 11297,
+      "aisle": "Produce;Spices and Seasonings",
+      "image": "parsley-curly.png",
+      "consistency": "solid",
+      "name": "fresh parsley leaves",
+      "original": "2 tablespoons chopped fresh parsley leaves",
+      "originalString": "2 tablespoons chopped fresh parsley leaves",
+      "originalName": "chopped fresh parsley leaves",
+      "amount": 2,
+      "unit": "tablespoons",
+      "meta": [
+        "fresh",
+        "chopped"
+      ],
+      "metaInformation": [
+        "fresh",
+        "chopped"
+      ],
+      "measures": {
+        "us": {
+          "amount": 2,
+          "unitShort": "Tbsps",
+          "unitLong": "Tbsps"
+        },
+        "metric": {
+          "amount": 2,
+          "unitShort": "Tbsps",
+          "unitLong": "Tbsps"
+        }
+      }
+    },
+    {
+      "id": 11215,
+      "aisle": "Produce",
+      "image": "garlic.png",
+      "consistency": "solid",
+      "name": "garlic",
+      "original": "4 cloves garlic, minced",
+      "originalString": "4 cloves garlic, minced",
+      "originalName": "garlic, minced",
+      "amount": 4,
+      "unit": "cloves",
+      "meta": [
+        "minced"
+      ],
+      "metaInformation": [
+        "minced"
+      ],
+      "measures": {
+        "us": {
+          "amount": 4,
+          "unitShort": "cloves",
+          "unitLong": "cloves"
+        },
+        "metric": {
+          "amount": 4,
+          "unitShort": "cloves",
+          "unitLong": "cloves"
+        }
+      }
+    },
+    {
+      "id": 1082047,
+      "aisle": "Spices and Seasonings",
+      "image": "salt.jpg",
+      "consistency": "solid",
+      "name": "kosher salt",
+      "original": "Kosher salt and freshly ground black pepper, to taste",
+      "originalString": "Kosher salt and freshly ground black pepper, to taste",
+      "originalName": "Kosher salt and freshly ground black pepper, to taste",
+      "amount": 4,
+      "unit": "servings",
+      "meta": [
+        "black",
+        "freshly ground",
+        "to taste"
+      ],
+      "metaInformation": [
+        "black",
+        "freshly ground",
+        "to taste"
+      ],
+      "measures": {
+        "us": {
+          "amount": 4,
+          "unitShort": "servings",
+          "unitLong": "servings"
+        },
+        "metric": {
+          "amount": 4,
+          "unitShort": "servings",
+          "unitLong": "servings"
+        }
+      }
+    },
+    {
+      "id": 1033,
+      "aisle": "Cheese",
+      "image": "parmesan.jpg",
+      "consistency": "solid",
+      "name": "parmesan",
+      "original": "3/4 cup grated Parmesan",
+      "originalString": "3/4 cup grated Parmesan",
+      "originalName": "grated Parmesan",
+      "amount": 0.75,
+      "unit": "cup",
+      "meta": [
+        "grated"
+      ],
+      "metaInformation": [
+        "grated"
+      ],
+      "measures": {
+        "us": {
+          "amount": 0.75,
+          "unitShort": "cups",
+          "unitLong": "cups"
+        },
+        "metric": {
+          "amount": 177.441,
+          "unitShort": "ml",
+          "unitLong": "milliliters"
+        }
+      }
+    },
+    {
+      "id": 11420420,
+      "aisle": "Pasta and Rice",
+      "image": "spaghetti.jpg",
+      "consistency": "solid",
+      "name": "spaghetti",
+      "original": "8 ounces spaghetti",
+      "originalString": "8 ounces spaghetti",
+      "originalName": "spaghetti",
+      "amount": 8,
+      "unit": "ounces",
+      "meta": [],
+      "metaInformation": [],
+      "measures": {
+        "us": {
+          "amount": 8,
+          "unitShort": "oz",
+          "unitLong": "ounces"
+        },
+        "metric": {
+          "amount": 226.796,
+          "unitShort": "g",
+          "unitLong": "grams"
+        }
+      }
+    }
+  ],
+  "id": 535835,
+  "title": "Spaghetti Carbonara",
+  "readyInMinutes": 25,
+  "servings": 4,
+  "image": "https://spoonacular.com/recipeImages/535835-556x370.jpg",
+  "imageType": "jpg",
+  "summary": "Spaghetti Carbonara might be just the <b>Mediterranean</b> recipe you are searching for. For <b>$1.07 per serving</b>, you get a main course that serves 4. One serving contains <b>412 calories</b>, <b>20g of protein</b>, and <b>17g of fat</b>. Plenty of people made this recipe, and 242704 would say it hit the spot. Head to the store and pick up kosher salt and pepper, garlic, spaghetti, and a few other things to make it today. To use up the kosher salt you could follow this main course with the <a href=\"https://spoonacular.com/recipes/low-fat-crumbs-cake-kosher-dairy-130933\">Low Fat Crumbs Cake (Kosher-Dairy)</a> as a dessert. From preparation to the plate, this recipe takes approximately <b>25 minutes</b>. All things considered, we decided this recipe <b>deserves a spoonacular score of 73%</b>. This score is pretty good. Try <a href=\"https://spoonacular.com/recipes/spaghetti-carbonara-147723\">Spaghetti Carbonara</a>, <a href=\"https://spoonacular.com/recipes/spaghetti-carbonara-138801\">Spaghetti Carbonara</a>, and <a href=\"https://spoonacular.com/recipes/spaghetti-carbonara-568138\">Spaghetti Carbonara</a> for similar recipes.",
+  "cuisines": [
+    "Mediterranean",
+    "Italian",
+    "Eastern European",
+    "European",
+    "Greek"
+  ],
+  "dishTypes": [
+    "lunch",
+    "main course",
+    "main dish",
+    "dinner"
+  ],
+  "diets": [],
+  "occasions": [],
+  "winePairing": {},
+  "instructions": "In a large pot of boiling salted water, cook pasta according to package instructions; reserve 1/2 cup water and drain well. In a small bowl, whisk together eggs and Parmesan; set aside. Heat a large skillet over medium high heat. Add bacon and cook until brown and crispy, about 6-8 minutes; reserve excess fat. Stir in garlic until fragrant, about 1 minute. Stir in pasta and egg mixture, and gently toss to combine; season with salt and pepper, to taste. Add reserved pasta water, one tablespoon at a time, until desired consistency is reached. Serve immediately, garnished with parsley, if desired.",
+  "analyzedInstructions": [
+    {
+      "name": "",
+      "steps": [
+        {
+          "number": 1,
+          "step": "In a large pot of boiling salted water, cook pasta according to package instructions; reserve 1/2 cup water and drain well. In a small bowl, whisk together eggs and Parmesan; set aside.",
+          "ingredients": [
+            {
+              "id": 1033,
+              "name": "parmesan",
+              "image": "parmesan.jpg"
+            },
+            {
+              "id": 20420,
+              "name": "pasta",
+              "image": "fusilli.jpg"
+            },
+            {
+              "id": 1123,
+              "name": "egg",
+              "image": "egg.png"
+            }
+          ],
+          "equipment": [
+            {
+              "id": 404661,
+              "name": "whisk",
+              "image": "whisk.png"
+            },
+            {
+              "id": 404783,
+              "name": "bowl",
+              "image": "bowl.jpg"
+            },
+            {
+              "id": 404752,
+              "name": "pot",
+              "image": "stock-pot.jpg"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "step": "Heat a large skillet over medium high heat.",
+          "ingredients": [],
+          "equipment": [
+            {
+              "id": 404645,
+              "name": "frying pan",
+              "image": "pan.png"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "step": "Add bacon and cook until brown and crispy, about 6-8 minutes; reserve excess fat. Stir in garlic until fragrant, about 1 minute. Stir in pasta and egg mixture, and gently toss to combine; season with salt and pepper, to taste.",
+          "ingredients": [
+            {
+              "id": 1102047,
+              "name": "salt and pepper",
+              "image": "salt-and-pepper.jpg"
+            },
+            {
+              "id": 11215,
+              "name": "garlic",
+              "image": "garlic.png"
+            },
+            {
+              "id": 10123,
+              "name": "bacon",
+              "image": "raw-bacon.png"
+            },
+            {
+              "id": 20420,
+              "name": "pasta",
+              "image": "fusilli.jpg"
+            },
+            {
+              "id": 1123,
+              "name": "egg",
+              "image": "egg.png"
+            }
+          ],
+          "equipment": [],
+          "length": {
+            "number": 9,
+            "unit": "minutes"
+          }
+        },
+        {
+          "number": 4,
+          "step": "Add reserved pasta water, one tablespoon at a time, until desired consistency is reached.",
+          "ingredients": [],
+          "equipment": []
+        },
+        {
+          "number": 5,
+          "step": "Serve immediately, garnished with parsley, if desired.",
+          "ingredients": [
+            {
+              "id": 11297,
+              "name": "parsley",
+              "image": "parsley.jpg"
+            }
+          ],
+          "equipment": []
+        }
+      ]
+    }
+  ],
+  "sourceName": null,
+  "creditsText": null,
+  "originalId": null
+}
