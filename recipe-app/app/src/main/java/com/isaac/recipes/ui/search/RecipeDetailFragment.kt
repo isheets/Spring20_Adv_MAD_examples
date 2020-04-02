@@ -11,8 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.isaac.recipes.R
+import kotlinx.android.synthetic.main.fragment_recipe_detail.*
 
 /**
  * A simple [Fragment] subclass.
@@ -34,6 +36,7 @@ class RecipeDetailFragment : Fragment() {
         val ingredientListView = root.findViewById<RecyclerView>(R.id.ingredientsListView)
         val recipeTitleTextView = root.findViewById<TextView>(R.id.recipeTitleTextView)
         val instructionsTextView = root.findViewById<TextView>(R.id.instructionsTextView)
+        val imageView = root.findViewById<ImageView>(R.id.recipeImageView)
 
         sharedSearchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
 
