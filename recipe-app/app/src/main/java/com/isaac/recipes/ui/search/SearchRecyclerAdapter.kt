@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.isaac.recipes.R
 import com.isaac.recipes.data.Recipe
 
-class SearchRecyclerAdapter(val context: Context, val recipeList: List<Recipe>) : RecyclerView.Adapter<SearchRecyclerAdapter.ViewHolder>() {
+class SearchRecyclerAdapter(val context: Context, val recipeList: List<Recipe>, val itemListener: RecipeItemListener) : RecyclerView.Adapter<SearchRecyclerAdapter.ViewHolder>() {
 
     //custom ViewHolder
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -33,5 +33,14 @@ class SearchRecyclerAdapter(val context: Context, val recipeList: List<Recipe>) 
 
         holder.titleText.text = curRecipe.title
         holder.prepText.text = "${curRecipe.readyInMinutes} min"
+
+        //pass the data item to the fragment click listener
+        holder.itemView.setOnClickListener {
+            itemListener.onRecipeItemClick(curRecipe)
+        }
+    }
+
+    interface RecipeItemListener {
+        fun onRecipeItemClick(recipe: Recipe)
     }
 }

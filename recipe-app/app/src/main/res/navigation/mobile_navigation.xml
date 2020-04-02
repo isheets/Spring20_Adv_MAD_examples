@@ -9,12 +9,21 @@
         android:id="@+id/navigation_search"
         android:name="com.isaac.recipes.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_search_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favorites"
         android:name="com.isaac.recipes.ui.favorites.FavoritesFragment"
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.isaac.recipes.ui.search.RecipeDetailFragment"
+        android:label="fragment_recipe_detail"
+        tools:layout="@layout/fragment_recipe_detail" />
 
 </navigation>
