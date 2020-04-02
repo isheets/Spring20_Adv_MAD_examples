@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/recipeDetailFragment"
         android:name="com.isaac.recipes.ui.search.RecipeDetailFragment"
-        android:label="fragment_recipe_detail"
+        android:label=""
         tools:layout="@layout/fragment_recipe_detail" />
 
 </navigation>

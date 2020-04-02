@@ -2,16 +2,13 @@ package com.isaac.recipes.ui.search
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.isaac.recipes.data.Recipe
 import com.isaac.recipes.data.RecipeRepository
-import com.isaac.recipes.utils.FileHelper
 
 class SharedSearchViewModel(app: Application) : AndroidViewModel(app) {
     //instantiate repository class
-    private val recipeRepo = RecipeRepository(app, this)
+    private val recipeRepo = RecipeRepository(app)
 
     //get reference to LiveData object with a value of type List<Recipe>
     val recipeData = recipeRepo.recipeData

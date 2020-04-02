@@ -1,17 +1,15 @@
 package com.isaac.recipes.data
 
 import android.app.Application
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.isaac.recipes.ui.search.SharedSearchViewModel
 import com.isaac.recipes.utils.FileHelper
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
-class RecipeRepository(val app: Application, private val sharedSearchViewModel: SharedSearchViewModel) {
+class RecipeRepository(val app: Application) {
 
     //parameterized type property for Moshi
     private val listType = Types.newParameterizedType(List::class.java, Recipe::class.java)
@@ -35,6 +33,8 @@ class RecipeRepository(val app: Application, private val sharedSearchViewModel: 
         //update our LiveData object with the results of our parsing
         recipeData.value = adapter.fromJson(dataText) ?: emptyList()
     }
+
+//    This portion of the class is dedicated to fetching detail for a specific recipe and updating the LiveData object
 
     val recipeSelectedObserver =  Observer<Recipe> {
         getRecipeDetails(it)
