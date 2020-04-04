@@ -57,12 +57,17 @@ class RecipeDetailFragment : Fragment() {
             instructionsTextView.text = it.instructions
         })
 
-        //we'll use this Observer to set the titles ASAP
+        //we'll use this Observer to set the titles and load the image as soon as we know what recipe we'll be displaying
         sharedSearchViewModel.selectedRecipe.observe(viewLifecycleOwner, Observer{
             //set the title in the action bar
             (activity as AppCompatActivity?)?.supportActionBar?.title = it.title
             //set the title textview
             recipeTitleTextView.text = it.title
+
+            //images can be fetched using the following pattern: https://spoonacular.com/recipeImages/{ID}-{SIZE}.{TYPE}
+            Glide.with(this)
+                .load("https://spoonacular.com/recipeImages/${it.id}-556x370.jpg")
+                .into(imageView)
         })
 
         return root
