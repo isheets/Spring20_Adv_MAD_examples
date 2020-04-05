@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.isaac.recipes.IMAGE_BASE_URL
 import com.isaac.recipes.R
 import kotlinx.android.synthetic.main.fragment_recipe_detail.*
 
@@ -66,7 +67,7 @@ class RecipeDetailFragment : Fragment() {
 
             //images can be fetched using the following pattern: https://spoonacular.com/recipeImages/{ID}-{SIZE}.{TYPE}
             Glide.with(this)
-                .load("https://spoonacular.com/recipeImages/${it.id}-556x370.jpg")
+                .load("${IMAGE_BASE_URL}/${it.id}-556x370.jpg")
                 .into(imageView)
         })
 

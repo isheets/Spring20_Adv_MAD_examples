@@ -1,13 +1,23 @@
 package com.isaac.recipes.data
 
 import android.app.Application
+import android.util.Log
+import androidx.annotation.WorkerThread
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import com.isaac.recipes.BASE_URL
+import com.isaac.recipes.LOG_TAG
 import com.isaac.recipes.utils.FileHelper
+import com.isaac.recipes.utils.NetworkHelper
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 class RecipeRepository(val app: Application) {
 
@@ -21,7 +31,11 @@ class RecipeRepository(val app: Application) {
     //fetch the data when the class is instantiated
     init {
         getRecipeList()
+        CoroutineScope(Dispatchers.IO).launch {
+            searchAPI("pasta")
+        }
     }
+
 
     //get the raw text from our json file and update the LiveData object with the parsed data
     private fun getRecipeList() {
@@ -35,7 +49,6 @@ class RecipeRepository(val app: Application) {
     }
 
 //    This portion of the class is dedicated to fetching detail for a specific recipe and updating the LiveData object
-
     val recipeSelectedObserver =  Observer<Recipe> {
         getRecipeDetails(it)
     }
@@ -52,6 +65,23 @@ class RecipeRepository(val app: Application) {
 
         //update our LiveData object with the results of our parsing
         recipeDetails.value = adapter.fromJson(detailsText)
+    }
+
+    @WorkerThread
+    suspend fun searchAPI(searchTerm: String) {
+        if(NetworkHelper.networkConnected(app)) {
+            val retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(MoshiConverterFactory.create())
+                .build()
+
+            val service = retrofit.create(SpoonacularService::class.java)
+
+            val response = service.searchRecipes(searchTerm).execute()
+            val results = response.body()
+
+            Log.i(LOG_TAG, results.toString())
+        }
     }
 
 

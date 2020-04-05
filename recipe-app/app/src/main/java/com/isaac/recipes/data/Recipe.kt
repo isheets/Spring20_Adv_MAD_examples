@@ -1,5 +1,15 @@
 package com.isaac.recipes.data
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class SearchResponse (
+    val results: Set<Recipe>,
+    val number: Int,
+    val totalResults: Int
+)
+
+@JsonClass(generateAdapter = true)
 data class Recipe (
     val id: Int,
     val title: String,
@@ -9,6 +19,7 @@ data class Recipe (
     val imageUrls: Set<String>
 )
 
+@JsonClass(generateAdapter = true)
 data class RecipeDetails (
     val title: String,
     val summary: String,
@@ -19,6 +30,7 @@ data class RecipeDetails (
     val extendedIngredients: Set<Ingredient>
 )
 
+@JsonClass(generateAdapter = true)
 data class Ingredient(
     val originalString: String,
     val name: String,
