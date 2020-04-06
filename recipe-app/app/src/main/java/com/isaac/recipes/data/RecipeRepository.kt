@@ -28,61 +28,63 @@ class RecipeRepository(val app: Application) {
     //we will publish from this class and subscribe from our fragment
     val recipeData = MutableLiveData<List<Recipe>>()
 
+    //properties for retrofit
+    private var retrofit: Retrofit = Retrofit.Builder()
+      .baseUrl(BASE_URL)
+      .addConverterFactory(MoshiConverterFactory.create())
+      .build()
+    private var service: SpoonacularService
+
     //fetch the data when the class is instantiated
     init {
-        getRecipeList()
+        //init the service instance
+        service = retrofit.create(SpoonacularService::class.java)
+
+        //async request for getting the recipes
         CoroutineScope(Dispatchers.IO).launch {
-            searchAPI("pasta")
+            getRecipeList("pasta")
         }
+
     }
 
 
-    //get the raw text from our json file and update the LiveData object with the parsed data
-    private fun getRecipeList() {
-        val dataText = FileHelper.readTextFromAssets(app, "recipe-data.json")
-
-        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-        val adapter: JsonAdapter<List<Recipe>> = moshi.adapter(listType)
-
-        //update our LiveData object with the results of our parsing
-        recipeData.value = adapter.fromJson(dataText) ?: emptyList()
+    //search the API for recipes based on a searchTerm
+    @WorkerThread
+    private suspend fun getRecipeList(searchTerm: String) {
+        if(NetworkHelper.networkConnected(app)) {
+            val response = service.searchRecipes(searchTerm).execute()
+            if(response.body() != null) {
+                //successful request
+                val responseBody = response.body()
+                recipeData.postValue(responseBody?.results?.toList())
+            } else {
+                //there was an error with the request (or server)
+                Log.e(LOG_TAG, "Could not search recipes. Error code: ${response.code()}")
+            }
+        }
     }
 
 //    This portion of the class is dedicated to fetching detail for a specific recipe and updating the LiveData object
     val recipeSelectedObserver =  Observer<Recipe> {
-        getRecipeDetails(it)
+        CoroutineScope(Dispatchers.IO).launch {
+            getRecipeDetails(it)
+        }
     }
 
     //LiveData for the recipe details
     val recipeDetails = MutableLiveData<RecipeDetails>()
 
     //get the raw text from our sample recipe details json
-    private fun getRecipeDetails(forRecipe: Recipe) {
-        val detailsText = FileHelper.readTextFromAssets(app, "sample-recipe.json")
-
-        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-        val adapter: JsonAdapter<RecipeDetails> = moshi.adapter(RecipeDetails::class.java)
-
-        //update our LiveData object with the results of our parsing
-        recipeDetails.value = adapter.fromJson(detailsText)
-    }
-
     @WorkerThread
-    suspend fun searchAPI(searchTerm: String) {
+    private suspend fun getRecipeDetails(forRecipe: Recipe) {
         if(NetworkHelper.networkConnected(app)) {
-            val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(MoshiConverterFactory.create())
-                .build()
-
-            val service = retrofit.create(SpoonacularService::class.java)
-
-            val response = service.searchRecipes(searchTerm).execute()
-            val results = response.body()
-
-            Log.i(LOG_TAG, results.toString())
+            val response = service.recipeDetails(forRecipe.id).execute()
+            if(response.body() != null) {
+                recipeDetails.postValue(response.body())
+            } else {
+                Log.e(LOG_TAG, "Could not find details for ${forRecipe.title}. Error code ${response.code()}")
+            }
         }
     }
-
 
 }
