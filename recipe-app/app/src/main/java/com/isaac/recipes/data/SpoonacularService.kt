@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface SpoonacularService {
     @GET("recipes/search?apiKey=${API_KEY}")
-    fun searchRecipes(@Query("q") searchTerm: String): Call<SearchResponse>
+    fun searchRecipes(@Query("query") searchTerm: String): Call<SearchResponse>
 
     @GET("recipes/{id}/information?apiKey=${API_KEY}")
     fun recipeDetails(@Path("id") id: Int): Call<RecipeDetails>

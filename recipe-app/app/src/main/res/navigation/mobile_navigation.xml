@@ -11,8 +11,8 @@
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" >
         <action
-            android:id="@+id/action_navigation_search_to_recipeDetailFragment"
-            app:destination="@id/recipeDetailFragment" />
+            android:id="@+id/action_navigation_search_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
     </fragment>
 
     <fragment
@@ -25,5 +25,14 @@
         android:name="com.isaac.recipes.ui.search.RecipeDetailFragment"
         android:label=""
         tools:layout="@layout/fragment_recipe_detail" />
+    <fragment
+        android:id="@+id/searchResultsFragment"
+        android:name="com.isaac.recipes.ui.search.SearchResultsFragment"
+        android:label="fragment_search_results"
+        tools:layout="@layout/fragment_search_results" >
+        <action
+            android:id="@+id/action_searchResultsFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
 
 </navigation>

@@ -39,18 +39,18 @@ class RecipeRepository(val app: Application) {
     init {
         //init the service instance
         service = retrofit.create(SpoonacularService::class.java)
-
-        //async request for getting the recipes
-        CoroutineScope(Dispatchers.IO).launch {
-            getRecipeList("pasta")
-        }
-
     }
 
+    val searchTermEntered =  Observer<String> {
+        CoroutineScope(Dispatchers.IO).launch {
+            getRecipeList(it)
+        }
+    }
 
     //search the API for recipes based on a searchTerm
     @WorkerThread
     private suspend fun getRecipeList(searchTerm: String) {
+        Log.i(LOG_TAG, searchTerm)
         if(NetworkHelper.networkConnected(app)) {
             val response = service.searchRecipes(searchTerm).execute()
             if(response.body() != null) {
