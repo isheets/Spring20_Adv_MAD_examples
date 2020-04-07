@@ -24,10 +24,6 @@ class RecipeRepository(val app: Application) {
     //parameterized type property for Moshi
     private val listType = Types.newParameterizedType(List::class.java, Recipe::class.java)
 
-    //LiveData object consisting of our recipe data
-    //we will publish from this class and subscribe from our fragment
-    val recipeData = MutableLiveData<List<Recipe>>()
-
     //properties for retrofit
     private var retrofit: Retrofit = Retrofit.Builder()
       .baseUrl(BASE_URL)
@@ -41,11 +37,16 @@ class RecipeRepository(val app: Application) {
         service = retrofit.create(SpoonacularService::class.java)
     }
 
+//    Observer for when the user enters text and presses search in the SearchFragment
     val searchTermEntered =  Observer<String> {
         CoroutineScope(Dispatchers.IO).launch {
             getRecipeList(it)
         }
     }
+
+    //LiveData object consisting of our recipe data
+    //we will publish from this class and subscribe from our fragment
+    val recipeData = MutableLiveData<List<Recipe>>()
 
     //search the API for recipes based on a searchTerm
     @WorkerThread
