@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.isaac.recipes.IMAGE_BASE_URL
 import com.isaac.recipes.R
 import com.isaac.recipes.ui.search.SharedSearchViewModel
@@ -36,7 +35,7 @@ class RecipeDetailFragment : Fragment() {
         //references to the necessary views
         val ingredientListView = root.findViewById<RecyclerView>(R.id.ingredientsListView)
         val recipeTitleTextView = root.findViewById<TextView>(R.id.recipeTitleTextView)
-        val instructionsTextView = root.findViewById<TextView>(R.id.instructionsTextView)
+        val instructionsRecyclerView = root.findViewById<RecyclerView>(R.id.instructionsRecyclerView)
         val imageView = root.findViewById<ImageView>(R.id.recipeImageView)
 
         sharedSearchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
@@ -51,15 +50,20 @@ class RecipeDetailFragment : Fragment() {
                 ingredientList.add(ingredient.originalString)
             }
             //add instantiate and use adapter for recyclerview
-            val adapter =
-                IngredientsRecyclerAdapter(
+            val ingredientAdapter =
+                DetailsRecyclerAdapter(
                     requireContext(),
                     ingredientList
                 )
-            ingredientListView.adapter = adapter
+            ingredientListView.adapter = ingredientAdapter
 
-            //set instructions textview
-            instructionsTextView.text = it.instructions
+            //setup recyclerview for instructions
+            val instructionList = mutableListOf<String>()
+            for(instruction in it.analyzedInstructions[0].steps) {
+                instructionList.add("${instruction.number}. ${instruction.step}")
+            }
+            val instructionAdapter = DetailsRecyclerAdapter(requireContext(), instructionList)
+            instructionsRecyclerView.adapter = instructionAdapter
         })
 
         //we'll use this Observer to set the titles and load the image as soon as we know what recipe we'll be displaying

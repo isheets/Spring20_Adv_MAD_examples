@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.isaac.recipes.R
 
-class IngredientsRecyclerAdapter(val context: Context, val ingredientList: List<String>) : RecyclerView.Adapter<IngredientsRecyclerAdapter.ViewHolder>() {
+class DetailsRecyclerAdapter(val context: Context, val ingredientList: List<String>) : RecyclerView.Adapter<DetailsRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val ingredientTextView: TextView = itemView.findViewById<TextView>(R.id.ingredientTextView)

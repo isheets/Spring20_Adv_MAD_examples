@@ -26,7 +26,7 @@ data class RecipeDetails (
     val image: String,
     val readyInMinutes: Int,
     val servings: Int,
-    val instructions: String,
+    val analyzedInstructions: List<Steps>,
     val extendedIngredients: Set<Ingredient>
 )
 
@@ -36,4 +36,15 @@ data class Ingredient(
     val name: String,
     val amount: Double,
     val unit: String
+)
+
+@JsonClass(generateAdapter = true)
+data class Steps(
+    val steps: List<Instruction>
+)
+
+@JsonClass(generateAdapter = true)
+data class Instruction(
+    val number: Int,
+    val step: String
 )
