@@ -22,12 +22,12 @@
         tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/recipeDetailFragment"
-        android:name="com.isaac.recipes.ui.search.RecipeDetailFragment"
+        android:name="com.isaac.recipes.ui.search.details.RecipeDetailFragment"
         android:label=""
         tools:layout="@layout/fragment_recipe_detail" />
     <fragment
         android:id="@+id/searchResultsFragment"
-        android:name="com.isaac.recipes.ui.search.SearchResultsFragment"
+        android:name="com.isaac.recipes.ui.search.results.SearchResultsFragment"
         android:label="fragment_search_results"
         tools:layout="@layout/fragment_search_results" >
         <action

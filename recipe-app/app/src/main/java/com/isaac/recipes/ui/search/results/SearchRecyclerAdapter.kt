@@ -1,4 +1,4 @@
-package com.isaac.recipes.ui.search
+package com.isaac.recipes.ui.search.results
 
 import android.content.Context
 import android.view.LayoutInflater

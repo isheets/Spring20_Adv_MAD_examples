@@ -1,4 +1,4 @@
-package com.isaac.recipes.ui.search
+package com.isaac.recipes.ui.search.results
 
 import android.os.Bundle
 import android.util.Log
@@ -14,11 +14,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.isaac.recipes.LOG_TAG
 import com.isaac.recipes.R
 import com.isaac.recipes.data.Recipe
+import com.isaac.recipes.ui.search.SharedSearchViewModel
 
 /**
  * A simple [Fragment] subclass.
  */
-class SearchResultsFragment : Fragment(), SearchRecyclerAdapter.RecipeItemListener {
+class SearchResultsFragment : Fragment(),
+    SearchRecyclerAdapter.RecipeItemListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var sharedSearchViewModel: SharedSearchViewModel
@@ -43,7 +45,12 @@ class SearchResultsFragment : Fragment(), SearchRecyclerAdapter.RecipeItemListen
         //subscribe to data changes in the repository class via the ViewModel
         sharedSearchViewModel.recipeData.observe(viewLifecycleOwner, Observer {
             //instantiate adapter
-            val adapter = SearchRecyclerAdapter(requireContext(), it, this)
+            val adapter =
+                SearchRecyclerAdapter(
+                    requireContext(),
+                    it,
+                    this
+                )
             //set the adapter to the recyclerview
             recyclerView.adapter = adapter
         })

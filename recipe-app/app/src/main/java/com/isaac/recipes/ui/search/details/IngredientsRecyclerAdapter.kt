@@ -1,4 +1,4 @@
-package com.isaac.recipes.ui.search
+package com.isaac.recipes.ui.search.details
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ class IngredientsRecyclerAdapter(val context: Context, val ingredientList: List<
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): IngredientsRecyclerAdapter.ViewHolder {
+    ): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.ingredient_list_item, parent, false)
         return ViewHolder(view)
@@ -25,7 +25,7 @@ class IngredientsRecyclerAdapter(val context: Context, val ingredientList: List<
 
     override fun getItemCount(): Int = ingredientList.count()
 
-    override fun onBindViewHolder(holder: IngredientsRecyclerAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val curIngredient = ingredientList[position]
 
         holder.ingredientTextView.text = curIngredient

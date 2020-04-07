@@ -1,4 +1,4 @@
-package com.isaac.recipes.ui.search
+package com.isaac.recipes.ui.search.details
 
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.isaac.recipes.IMAGE_BASE_URL
 import com.isaac.recipes.R
-import kotlinx.android.synthetic.main.fragment_recipe_detail.*
+import com.isaac.recipes.ui.search.SharedSearchViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -28,8 +28,8 @@ class RecipeDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //hide the bottom nav since we've moved down in the view hierarchy
-        activity?.findViewById<BottomNavigationView>(R.id.nav_view)?.visibility = android.view.View.GONE
+//        //hide the bottom nav since we've moved down in the view hierarchy
+//        activity?.findViewById<BottomNavigationView>(R.id.nav_view)?.visibility = android.view.View.GONE
 
         val root = inflater.inflate(R.layout.fragment_recipe_detail, container, false)
 
@@ -51,7 +51,11 @@ class RecipeDetailFragment : Fragment() {
                 ingredientList.add(ingredient.originalString)
             }
             //add instantiate and use adapter for recyclerview
-            val adapter = IngredientsRecyclerAdapter(requireContext(), ingredientList)
+            val adapter =
+                IngredientsRecyclerAdapter(
+                    requireContext(),
+                    ingredientList
+                )
             ingredientListView.adapter = adapter
 
             //set instructions textview
