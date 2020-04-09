@@ -2,9 +2,7 @@ package com.isaac.recipes.ui.search.details
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -13,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.isaac.recipes.IMAGE_BASE_URL
+import com.isaac.recipes.LOG_TAG
 import com.isaac.recipes.R
 import com.isaac.recipes.ui.search.SharedSearchViewModel
 
@@ -27,8 +26,6 @@ class RecipeDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        //hide the bottom nav since we've moved down in the view hierarchy
-//        activity?.findViewById<BottomNavigationView>(R.id.nav_view)?.visibility = android.view.View.GONE
 
         val root = inflater.inflate(R.layout.fragment_recipe_detail, container, false)
 

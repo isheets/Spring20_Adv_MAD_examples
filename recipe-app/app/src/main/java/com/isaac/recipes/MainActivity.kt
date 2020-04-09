@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: BottomNavigationView
 
     //show/hide bottom nav and up nav arrow based on where we are navigating to
-    private val navControllerListener = NavController.OnDestinationChangedListener { controller, destination, arguments ->
+    private val navControllerListener = NavController.OnDestinationChangedListener { _, destination, _ ->
         if(destination.id == R.id.navigation_favorites || destination.id == R.id.navigation_search) {
             //show bottom nav and hide up arrow
             supportActionBar?.setDisplayHomeAsUpEnabled(false)

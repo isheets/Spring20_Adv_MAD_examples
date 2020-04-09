@@ -13,10 +13,9 @@ data class SearchResponse (
 data class Recipe (
     val id: Int,
     val title: String,
-    val readyInMinutes: Int,
     val servings: Int,
-    val image: String,
-    val imageUrls: Set<String>
+    val readyInMinutes: Int,
+    val image: String
 )
 
 @JsonClass(generateAdapter = true)

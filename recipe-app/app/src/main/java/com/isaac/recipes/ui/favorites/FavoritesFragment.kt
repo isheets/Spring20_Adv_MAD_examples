@@ -1,13 +1,16 @@
 package com.isaac.recipes.ui.favorites
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.isaac.recipes.LOG_TAG
 import com.isaac.recipes.R
 
 class FavoritesFragment : Fragment() {
@@ -27,6 +30,16 @@ class FavoritesFragment : Fragment() {
         favoritesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        favoritesViewModel.favoriteList.observe(viewLifecycleOwner, Observer {
+            Log.i(LOG_TAG, it.toString())
+        })
+
+        textView.setOnClickListener {
+            favoritesViewModel.testDaos()
+        }
         return root
     }
 }
+
+
