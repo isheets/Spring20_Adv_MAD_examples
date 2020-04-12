@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.isaac.recipes.data.database.favorite.Favorite
 import com.isaac.recipes.data.database.favorite.FavoriteDAO
 import com.isaac.recipes.data.database.ingredient.Ingredient
@@ -13,8 +14,9 @@ import com.isaac.recipes.data.database.instruction.InstructionDAO
 import com.isaac.recipes.data.database.relation.FavoriteWithDetailsDAO
 
 @Database(entities = [Ingredient::class, Instruction::class, Favorite::class],
-    version = 1,
+    version = 2,
     exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun favoriteWithDetailsDAO(): FavoriteWithDetailsDAO
     abstract fun favoriteDAO(): FavoriteDAO

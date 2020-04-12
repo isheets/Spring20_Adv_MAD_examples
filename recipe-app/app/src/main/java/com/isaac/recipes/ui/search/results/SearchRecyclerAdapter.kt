@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.isaac.recipes.R
-import com.isaac.recipes.data.Recipe
+import com.isaac.recipes.data.models.Recipe
 
 class SearchRecyclerAdapter(val context: Context, val recipeList: List<Recipe>, val itemListener: RecipeItemListener) : RecyclerView.Adapter<SearchRecyclerAdapter.ViewHolder>() {
 

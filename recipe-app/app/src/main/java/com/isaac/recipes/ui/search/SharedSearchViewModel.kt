@@ -3,8 +3,8 @@ package com.isaac.recipes.ui.search
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.isaac.recipes.data.Recipe
-import com.isaac.recipes.data.RecipeRepository
+import com.isaac.recipes.data.models.Recipe
+import com.isaac.recipes.data.repos.RecipeRepository
 
 class SharedSearchViewModel(app: Application) : AndroidViewModel(app) {
     //instantiate repository class

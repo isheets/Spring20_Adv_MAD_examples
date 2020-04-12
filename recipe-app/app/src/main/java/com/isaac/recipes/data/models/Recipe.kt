@@ -1,4 +1,4 @@
-package com.isaac.recipes.data
+package com.isaac.recipes.data.models
 
 import com.squareup.moshi.JsonClass
 

@@ -4,8 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.isaac.recipes.data.FavoriteRepository
+import com.isaac.recipes.data.repos.FavoriteRepository
 
 class FavoritesViewModel(app: Application) : AndroidViewModel(app) {
     private val favRepo = FavoriteRepository(app)

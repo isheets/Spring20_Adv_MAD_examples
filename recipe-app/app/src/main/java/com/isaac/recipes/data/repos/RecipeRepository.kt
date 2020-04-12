@@ -1,4 +1,4 @@
-package com.isaac.recipes.data
+package com.isaac.recipes.data.repos
 
 import android.app.Application
 import android.util.Log
@@ -7,12 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.isaac.recipes.BASE_URL
 import com.isaac.recipes.LOG_TAG
-import com.isaac.recipes.utils.FileHelper
+import com.isaac.recipes.data.models.Recipe
+import com.isaac.recipes.data.models.RecipeDetails
+import com.isaac.recipes.data.services.SpoonacularService
 import com.isaac.recipes.utils.NetworkHelper
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

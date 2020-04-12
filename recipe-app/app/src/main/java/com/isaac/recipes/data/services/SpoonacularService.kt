@@ -1,6 +1,8 @@
-package com.isaac.recipes.data
+package com.isaac.recipes.data.services
 
 import com.isaac.recipes.API_KEY
+import com.isaac.recipes.data.models.RecipeDetails
+import com.isaac.recipes.data.models.SearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

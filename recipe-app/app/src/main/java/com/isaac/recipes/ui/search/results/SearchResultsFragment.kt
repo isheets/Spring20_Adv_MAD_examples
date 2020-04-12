@@ -13,7 +13,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.isaac.recipes.LOG_TAG
 import com.isaac.recipes.R
-import com.isaac.recipes.data.Recipe
+import com.isaac.recipes.data.models.Recipe
 import com.isaac.recipes.ui.search.SharedSearchViewModel
 
 /**
