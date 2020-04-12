@@ -21,6 +21,7 @@ data class Recipe (
 
 @JsonClass(generateAdapter = true)
 data class RecipeDetails (
+    val id: Int,
     val title: String,
     val summary: String,
     val image: String,
