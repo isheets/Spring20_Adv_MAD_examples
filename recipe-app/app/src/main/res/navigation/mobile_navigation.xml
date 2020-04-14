@@ -19,10 +19,14 @@
         android:id="@+id/navigation_favorites"
         android:name="com.isaac.recipes.ui.favorites.FavoritesFragment"
         android:label="@string/title_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_navigation_favorites_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/recipeDetailFragment"
-        android:name="com.isaac.recipes.ui.search.details.RecipeDetailFragment"
+        android:name="com.isaac.recipes.ui.details.RecipeDetailFragment"
         android:label=""
         tools:layout="@layout/fragment_recipe_detail" />
     <fragment

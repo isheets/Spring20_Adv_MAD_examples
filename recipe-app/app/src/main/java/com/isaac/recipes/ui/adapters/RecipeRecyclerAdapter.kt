@@ -1,4 +1,4 @@
-package com.isaac.recipes.ui.search.results
+package com.isaac.recipes.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.isaac.recipes.R
 import com.isaac.recipes.data.models.Recipe
 
-class SearchRecyclerAdapter(val context: Context, val recipeList: List<Recipe>, val itemListener: RecipeItemListener) : RecyclerView.Adapter<SearchRecyclerAdapter.ViewHolder>() {
+class RecipeRecyclerAdapter(val context: Context, var recipeList: List<Recipe>, val itemListener: RecipeItemListener) : RecyclerView.Adapter<RecipeRecyclerAdapter.ViewHolder>() {
 
     //custom ViewHolder
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

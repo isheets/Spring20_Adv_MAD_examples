@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.isaac.recipes.LOG_TAG
 import com.isaac.recipes.R
 import com.isaac.recipes.data.models.Recipe
+import com.isaac.recipes.ui.adapters.RecipeRecyclerAdapter
 import com.isaac.recipes.ui.search.SharedSearchViewModel
 
 /**
  * A simple [Fragment] subclass.
  */
 class SearchResultsFragment : Fragment(),
-    SearchRecyclerAdapter.RecipeItemListener {
+    RecipeRecyclerAdapter.RecipeItemListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var sharedSearchViewModel: SharedSearchViewModel
@@ -46,7 +47,7 @@ class SearchResultsFragment : Fragment(),
         sharedSearchViewModel.recipeData.observe(viewLifecycleOwner, Observer {
             //instantiate adapter
             val adapter =
-                SearchRecyclerAdapter(
+                RecipeRecyclerAdapter(
                     requireContext(),
                     it,
                     this

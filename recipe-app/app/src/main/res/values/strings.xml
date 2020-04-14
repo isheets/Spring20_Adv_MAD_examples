@@ -11,4 +11,6 @@
     <string name="recipe_imgage">recipe imgage</string>
     <string name="search_recipes">Search recipes</string>
     <string name="search">Search</string>
+    <string name="save">Save</string>
+    <string name="remove">Remove</string>
 </resources>

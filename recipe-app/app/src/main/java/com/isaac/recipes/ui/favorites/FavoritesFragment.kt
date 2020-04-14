@@ -1,38 +1,52 @@
 package com.isaac.recipes.ui.favorites
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.isaac.recipes.LOG_TAG
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
 import com.isaac.recipes.R
+import com.isaac.recipes.data.models.Recipe
+import com.isaac.recipes.ui.adapters.RecipeRecyclerAdapter
 
-class FavoritesFragment : Fragment() {
-    private lateinit var favoritesViewModel: FavoritesViewModel
+class FavoritesFragment : Fragment(), RecipeRecyclerAdapter.RecipeItemListener {
+    private lateinit var favVM: SharedFavoritesViewModel
+    private lateinit var favRecyclerView: RecyclerView
+    private lateinit var adapter: RecipeRecyclerAdapter
+    private lateinit var navController: NavController
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        favoritesViewModel =
-                ViewModelProvider(this).get(FavoritesViewModel::class.java)
+        favVM =
+                ViewModelProvider(requireActivity()).get(SharedFavoritesViewModel::class.java)
+
+        navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+
         val root = inflater.inflate(R.layout.fragment_favorites, container, false)
-        val textView: TextView = root.findViewById(R.id.text_favorites)
+        favRecyclerView = root.findViewById(R.id.favoritesRecyclerView)
 
-        favoritesViewModel.favoriteWithDetailsList.observe(viewLifecycleOwner, Observer {
-            Log.i(LOG_TAG, it.toString())
+        adapter = RecipeRecyclerAdapter(requireContext(), emptyList<Recipe>(), this)
+        favRecyclerView.adapter = adapter
+
+        //add observer for new favorites in database
+        favVM.favoriteRecipeList.observe(viewLifecycleOwner, Observer {
+            adapter.recipeList = it
+            adapter.notifyDataSetChanged()
         })
 
-        //listen for updates to our LiveData object
-        favoritesViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
+    }
+
+    override fun onRecipeItemClick(recipe: Recipe) {
+        favVM.favSelected(recipe)
+        navController.navigate(R.id.action_navigation_favorites_to_recipeDetailFragment)
     }
 }

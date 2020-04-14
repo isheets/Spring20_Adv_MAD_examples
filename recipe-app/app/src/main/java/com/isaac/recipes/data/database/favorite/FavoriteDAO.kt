@@ -13,4 +13,7 @@ interface FavoriteDAO {
 
     @Query("SELECT * FROM favorites_table")
     fun getAllFavorites(): LiveData<List<Favorite>>
+
+    @Query("SELECT * FROM favorites_table WHERE recipe_id = :id")
+    fun getFavorite(id: Int): Favorite
 }
