@@ -1,6 +1,8 @@
 package com.isaac.recipes.data.repos
 
 import android.app.Application
+import android.database.Observable
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.isaac.recipes.data.database.AppDatabase
@@ -10,11 +12,10 @@ import com.isaac.recipes.data.database.instruction.Instruction
 import com.isaac.recipes.data.database.relation.FavoriteWithDetails
 import com.isaac.recipes.data.models.Recipe
 import com.isaac.recipes.data.models.RecipeDetails
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.*
 import androidx.lifecycle.Observer
+import com.isaac.recipes.LOG_TAG
+import kotlinx.coroutines.*
 
 class FavoriteRepository(val app: Application) {
     private val db = AppDatabase.getDatabase(app)
@@ -53,6 +54,24 @@ class FavoriteRepository(val app: Application) {
             val ingredients = ingredientDAO.getIngredientsForRecipe(fav.recipe_id)
 
             favoriteDetails.postValue(RecipeDetails.fromRoomTypes(fav, instructions, ingredients))
+        }
+    }
+
+    fun removeRecipeFromFavorites(recipe: RecipeDetails) {
+        CoroutineScope(Dispatchers.IO).async {
+            ingredientDAO.deleteIngredients(recipe.id)
+            instructionDAO.deleteInstructions(recipe.id)
+            favoriteDAO.removeFavorite(recipe.id)
+        }
+    }
+
+    val recipeIsFavorite = MutableLiveData<Boolean>()
+
+    fun isRecipeFavorited(id: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val favorite = favoriteDAO.getFavorite(id)
+            Log.i(LOG_TAG, "Looking for favorite, found ${favorite}")
+            recipeIsFavorite.postValue( favorite != null)
         }
     }
 }

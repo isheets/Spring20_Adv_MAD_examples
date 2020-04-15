@@ -14,7 +14,7 @@ import com.isaac.recipes.data.database.instruction.InstructionDAO
 import com.isaac.recipes.data.database.relation.FavoriteWithDetailsDAO
 
 @Database(entities = [Ingredient::class, Instruction::class, Favorite::class],
-    version = 2,
+    version = 3,
     exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {

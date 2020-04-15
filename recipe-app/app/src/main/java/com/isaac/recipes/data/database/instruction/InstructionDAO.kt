@@ -1,9 +1,7 @@
 package com.isaac.recipes.data.database.instruction
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+import com.isaac.recipes.data.database.ingredient.Ingredient
 
 @Dao
 interface InstructionDAO {
@@ -12,4 +10,7 @@ interface InstructionDAO {
 
     @Query("SELECT * FROM instructions_table WHERE recipe_id = :id")
     fun getInstructionsForRecipe(id: Int): List<Instruction>
+
+    @Query("DELETE FROM instructions_table WHERE recipe_id = :id")
+    fun deleteInstructions(id: Int)
 }

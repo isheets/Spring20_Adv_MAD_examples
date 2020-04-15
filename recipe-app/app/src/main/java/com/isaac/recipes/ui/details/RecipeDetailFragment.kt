@@ -7,6 +7,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +19,9 @@ import com.isaac.recipes.R
 import com.isaac.recipes.data.models.RecipeDetails
 import com.isaac.recipes.ui.favorites.SharedFavoritesViewModel
 import com.isaac.recipes.ui.search.SharedSearchViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
@@ -39,6 +44,9 @@ class RecipeDetailFragment : Fragment() {
     private val updateViewWithDetails = Observer<RecipeDetails> {
         //set the current recipe
         currentRecipe = it
+
+        //check to see if the user has already added a favorite
+        favoritesVM.isRecipeFavorited(it.id)
 
         //set the title in the action bar
         (activity as AppCompatActivity?)?.supportActionBar?.title = it.title
@@ -100,35 +108,50 @@ class RecipeDetailFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.detail_menu, menu)
+
+        favoritesVM.isFavorite.observe(viewLifecycleOwner, Observer {
+            val item = menu.findItem(R.id.favoriteRecipe)
+            if(it) {
+                setFavoriteMenuItemState(item, getString(R.string.remove))
+            }
+            else {
+                setFavoriteMenuItemState(item, getString(R.string.save))
+            }
+        })
+
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun setFavoriteMenuItemState(menuItem: MenuItem, title: String) {
+        menuItem.title = title
+        if(title == getString(R.string.save)) {
+            menuItem.icon = ResourcesCompat.getDrawable(
+                resources,
+                android.R.drawable.btn_star_big_off,
+                null
+            )
+        } else if (title == getString(R.string.remove)) {
+            menuItem.icon = ResourcesCompat.getDrawable(
+                resources,
+                android.R.drawable.btn_star_big_on,
+                null
+            )
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         //toggle icon and title when pressing the star
         if(item.itemId == R.id.favoriteRecipe) {
             if (item.title == getString(R.string.save)) {
-                item.icon = ResourcesCompat.getDrawable(
-                    resources,
-                    android.R.drawable.btn_star_big_on,
-                    null
-                )
-                item.title = getString(R.string.remove)
-                //pass new favorite to view model
+                setFavoriteMenuItemState(item, getString(R.string.remove))
+                //pass new favorite to view model for persistence
                 favoritesVM.addFavorite(currentRecipe)
             } else {
-                item.icon = ResourcesCompat.getDrawable(
-                    resources,
-                    android.R.drawable.btn_star_big_off,
-                    null
-                )
-                item.title = getString(R.string.save)
-                //pass removed favorite to view model
-
+                setFavoriteMenuItemState(item, getString(R.string.save))
+                //pass removed favorite to view model for deletion
+                favoritesVM.removeRecipeFromFavorites(currentRecipe)
             }
-        } else {
-            Log.i(LOG_TAG, item.itemId.toString())
         }
-
         return super.onOptionsItemSelected(item)
     }
 
