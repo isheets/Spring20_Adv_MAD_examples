@@ -90,12 +90,19 @@ class SearchResultsFragment : Fragment(),
 
     private fun toggleLoading(loading: Boolean) {
         if(loading && sharedSearchViewModel.searchLoading) {
-            recyclerView.visibility = View.GONE
+            recyclerView.visibility = View.INVISIBLE
             loadingBar.visibility = View.VISIBLE
             //we don't want to show the loading indicator unless we perform a new search
+
+        } else if(!loading && sharedSearchViewModel.searchLoading){
+            recyclerView.scaleY = 0.0f
+            recyclerView.pivotY = 0.0f
+            recyclerView.visibility = View.VISIBLE
+            recyclerView.animate().scaleY(1.0f).duration = 300
+            loadingBar.visibility = View.GONE
+
             sharedSearchViewModel.searchLoading = false
         } else {
-            recyclerView.visibility = View.VISIBLE
             loadingBar.visibility = View.GONE
         }
     }

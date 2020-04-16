@@ -1,36 +1,28 @@
 package com.isaac.recipes.ui.details
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.*
-import androidx.annotation.IdRes
+import android.view.animation.AlphaAnimation
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.isaac.recipes.IMAGE_BASE_URL
 import com.isaac.recipes.LOG_TAG
 import com.isaac.recipes.R
 import com.isaac.recipes.data.models.RecipeDetails
 import com.isaac.recipes.ui.favorites.SharedFavoritesViewModel
 import com.isaac.recipes.ui.search.SharedSearchViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
@@ -54,6 +46,8 @@ class RecipeDetailFragment : Fragment() {
     private lateinit var currentRecipe: RecipeDetails
 
     private lateinit var loadingBar: ProgressBar
+
+    private var resumed = false
 
     private val updateViewWithDetails = Observer<RecipeDetails> {
         //set the current recipe
@@ -121,6 +115,8 @@ class RecipeDetailFragment : Fragment() {
         loadingBar.id = 1
         constraintLayout.addView(loadingBar)
 
+        toggleLoading(true)
+
         var constraints = ConstraintSet()
         constraints.clone(constraintLayout)
         constraints.connect(loadingBar.id, ConstraintSet.RIGHT, constraintLayout.id, ConstraintSet.RIGHT, 8)
@@ -141,27 +137,34 @@ class RecipeDetailFragment : Fragment() {
 
     override fun onResume() {
         //hide content widgets and show progress bar
+        resumed = true
         toggleLoading(true)
         super.onResume()
     }
 
     private fun toggleLoading(loading: Boolean) {
+        Log.i(LOG_TAG, "toggleLoading $loading $resumed")
         if(loading) {
-            ingredientListView.visibility = View.GONE
-            recipeTitleTextView.visibility = View.GONE
-            instructionsRecyclerView.visibility = View.GONE
-            imageView.visibility = View.GONE
-            instructionTitleTextView.visibility = View.GONE
-            ingredientTitleTextView.visibility = View.GONE
+            Log.i(LOG_TAG, "hiding content")
+            ingredientListView.alpha = 0.0f
+            recipeTitleTextView.alpha = 0.0f
+            instructionsRecyclerView.alpha = 0.0f
+            imageView.alpha = 0.0f
+            instructionTitleTextView.alpha = 0.0f
+            ingredientTitleTextView.alpha = 0.0f
             loadingBar.visibility = View.VISIBLE
-        } else {
-            ingredientListView.visibility = View.VISIBLE
-            recipeTitleTextView.visibility = View.VISIBLE
-            instructionsRecyclerView.visibility = View.VISIBLE
-            imageView.visibility = View.VISIBLE
-            instructionTitleTextView.visibility = View.VISIBLE
-            ingredientTitleTextView.visibility = View.VISIBLE
+
+        } else if(!loading && resumed){
+            Log.i(LOG_TAG, "fading content in")
+            ingredientListView.animate().alpha(1.0f).duration = 200
+            recipeTitleTextView.animate().alpha(1.0f).duration = 200
+            instructionsRecyclerView.animate().alpha(1.0f).duration = 200
+            imageView.animate().alpha(1.0f).duration = 200
+            instructionTitleTextView.animate().alpha(1.0f).duration = 200
+            ingredientTitleTextView.animate().alpha(1.0f).duration = 200
             loadingBar.visibility = View.GONE
+
+            resumed = false
         }
     }
 
