@@ -1,10 +1,15 @@
 package com.isaac.recipes.ui.details
 
+import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -13,6 +18,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.isaac.recipes.IMAGE_BASE_URL
 import com.isaac.recipes.LOG_TAG
 import com.isaac.recipes.R
@@ -37,9 +46,14 @@ class RecipeDetailFragment : Fragment() {
     private lateinit var recipeTitleTextView: TextView
     private lateinit var instructionsRecyclerView: RecyclerView
     private lateinit var imageView: ImageView
+    private lateinit var ingredientTitleTextView: TextView
+    private lateinit var instructionTitleTextView: TextView
+    private lateinit var constraintLayout: ConstraintLayout
 
     //keep track of what recipe we are showing
     private lateinit var currentRecipe: RecipeDetails
+
+    private lateinit var loadingBar: ProgressBar
 
     private val updateViewWithDetails = Observer<RecipeDetails> {
         //set the current recipe
@@ -79,8 +93,11 @@ class RecipeDetailFragment : Fragment() {
         }
         val instructionAdapter = DetailsRecyclerAdapter(requireContext(), instructionList)
         instructionsRecyclerView.adapter = instructionAdapter
+
+        toggleLoading(false)
     }
 
+    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -91,10 +108,26 @@ class RecipeDetailFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_recipe_detail, container, false)
 
         //references to the necessary views
-        ingredientListView = root.findViewById<RecyclerView>(R.id.ingredientsListView)
-        recipeTitleTextView = root.findViewById<TextView>(R.id.recipeTitleTextView)
-        instructionsRecyclerView = root.findViewById<RecyclerView>(R.id.instructionsRecyclerView)
-        imageView = root.findViewById<ImageView>(R.id.recipeImageView)
+        ingredientListView = root.findViewById(R.id.ingredientsListView)
+        recipeTitleTextView = root.findViewById(R.id.recipeTitleTextView)
+        instructionsRecyclerView = root.findViewById(R.id.instructionsRecyclerView)
+        imageView = root.findViewById(R.id.recipeImageView)
+        instructionTitleTextView = root.findViewById(R.id.instructionsTitleTextView)
+        ingredientTitleTextView = root.findViewById(R.id.ingredientsTextView)
+        constraintLayout = root.findViewById(R.id.detailConstraintLayout)
+
+        //loading bar with constraints
+        loadingBar = ProgressBar(requireContext())
+        loadingBar.id = 1
+        constraintLayout.addView(loadingBar)
+
+        var constraints = ConstraintSet()
+        constraints.clone(constraintLayout)
+        constraints.connect(loadingBar.id, ConstraintSet.RIGHT, constraintLayout.id, ConstraintSet.RIGHT, 8)
+        constraints.connect(loadingBar.id, ConstraintSet.LEFT, constraintLayout.id, ConstraintSet.LEFT, 8)
+        constraints.connect(loadingBar.id, ConstraintSet.TOP, constraintLayout.id, ConstraintSet.TOP, 32)
+
+        constraints.applyTo(constraintLayout)
 
         sharedSearchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
         favoritesVM = ViewModelProvider(requireActivity()).get(SharedFavoritesViewModel::class.java)
@@ -104,6 +137,32 @@ class RecipeDetailFragment : Fragment() {
         favoritesVM.favDetails.observe(viewLifecycleOwner, updateViewWithDetails)
 
         return root
+    }
+
+    override fun onResume() {
+        //hide content widgets and show progress bar
+        toggleLoading(true)
+        super.onResume()
+    }
+
+    private fun toggleLoading(loading: Boolean) {
+        if(loading) {
+            ingredientListView.visibility = View.GONE
+            recipeTitleTextView.visibility = View.GONE
+            instructionsRecyclerView.visibility = View.GONE
+            imageView.visibility = View.GONE
+            instructionTitleTextView.visibility = View.GONE
+            ingredientTitleTextView.visibility = View.GONE
+            loadingBar.visibility = View.VISIBLE
+        } else {
+            ingredientListView.visibility = View.VISIBLE
+            recipeTitleTextView.visibility = View.VISIBLE
+            instructionsRecyclerView.visibility = View.VISIBLE
+            imageView.visibility = View.VISIBLE
+            instructionTitleTextView.visibility = View.VISIBLE
+            ingredientTitleTextView.visibility = View.VISIBLE
+            loadingBar.visibility = View.GONE
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
