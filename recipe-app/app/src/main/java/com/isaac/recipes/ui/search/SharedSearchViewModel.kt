@@ -19,6 +19,8 @@ class SharedSearchViewModel(app: Application) : AndroidViewModel(app) {
 
     val searchUserInput = MutableLiveData<String>()
 
+    var searchLoading = true
+
     //add the recipe repo observer
     init {
         selectedRecipe.observeForever(recipeRepo.recipeSelectedObserver)

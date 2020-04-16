@@ -1,11 +1,15 @@
 package com.isaac.recipes.ui.search.results
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -24,9 +28,12 @@ class SearchResultsFragment : Fragment(),
     RecipeRecyclerAdapter.RecipeItemListener {
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var loadingBar: ProgressBar
+    private lateinit var constraintLayout: ConstraintLayout
     private lateinit var sharedSearchViewModel: SharedSearchViewModel
     private lateinit var navController: NavController
 
+    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +49,20 @@ class SearchResultsFragment : Fragment(),
 
         //find the recyclerview
         recyclerView = root.findViewById(R.id.recyclerView)
+        constraintLayout = root.findViewById(R.id.resultsConstraintLayout)
+
+        //loading bar with constraints
+        loadingBar = ProgressBar(requireContext())
+        loadingBar.id = 1
+        constraintLayout.addView(loadingBar)
+
+        var constraints = ConstraintSet()
+        constraints.clone(constraintLayout)
+        constraints.connect(loadingBar.id, ConstraintSet.RIGHT, constraintLayout.id, ConstraintSet.RIGHT, 8)
+        constraints.connect(loadingBar.id, ConstraintSet.LEFT, constraintLayout.id, ConstraintSet.LEFT, 8)
+        constraints.connect(loadingBar.id, ConstraintSet.TOP, constraintLayout.id, ConstraintSet.TOP, 32)
+
+        constraints.applyTo(constraintLayout)
 
         //subscribe to data changes in the repository class via the ViewModel
         sharedSearchViewModel.recipeData.observe(viewLifecycleOwner, Observer {
@@ -54,9 +75,29 @@ class SearchResultsFragment : Fragment(),
                 )
             //set the adapter to the recyclerview
             recyclerView.adapter = adapter
+
+            toggleLoading(false)
         })
 
         return root
+    }
+
+    override fun onResume() {
+        toggleLoading(true)
+        super.onResume()
+    }
+
+
+    private fun toggleLoading(loading: Boolean) {
+        if(loading && sharedSearchViewModel.searchLoading) {
+            recyclerView.visibility = View.GONE
+            loadingBar.visibility = View.VISIBLE
+            //we don't want to show the loading indicator unless we perform a new search
+            sharedSearchViewModel.searchLoading = false
+        } else {
+            recyclerView.visibility = View.VISIBLE
+            loadingBar.visibility = View.GONE
+        }
     }
 
     override fun onRecipeItemClick(recipe: Recipe) {
