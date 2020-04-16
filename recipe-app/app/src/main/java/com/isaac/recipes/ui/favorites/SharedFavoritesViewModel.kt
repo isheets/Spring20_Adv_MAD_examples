@@ -44,7 +44,7 @@ class SharedFavoritesViewModel(app: Application) : AndroidViewModel(app) {
         favRepo.addFavorite(recipe)
     }
 
-    fun removeRecipeFromFavorites(recipe: RecipeDetails) = favRepo.removeRecipeFromFavorites(recipe)
+    fun removeRecipeFromFavorites(id: Int) = favRepo.removeRecipeFromFavorites(id)
 
     val isFavorite = favRepo.recipeIsFavorite
 

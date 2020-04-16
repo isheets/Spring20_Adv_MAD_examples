@@ -1,8 +1,11 @@
 package com.isaac.recipes.ui.search
 
 import android.app.Application
+import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.isaac.recipes.R
 import com.isaac.recipes.data.models.Recipe
 import com.isaac.recipes.data.repos.RecipeRepository
 
@@ -34,4 +37,5 @@ class SharedSearchViewModel(app: Application) : AndroidViewModel(app) {
         searchUserInput.removeObserver(recipeRepo.searchTermEntered)
         super.onCleared()
     }
+
 }

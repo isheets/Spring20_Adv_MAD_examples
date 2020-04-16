@@ -57,11 +57,11 @@ class FavoriteRepository(val app: Application) {
         }
     }
 
-    fun removeRecipeFromFavorites(recipe: RecipeDetails) {
+    fun removeRecipeFromFavorites(id: Int) {
         CoroutineScope(Dispatchers.IO).async {
-            ingredientDAO.deleteIngredients(recipe.id)
-            instructionDAO.deleteInstructions(recipe.id)
-            favoriteDAO.removeFavorite(recipe.id)
+            ingredientDAO.deleteIngredients(id)
+            instructionDAO.deleteInstructions(id)
+            favoriteDAO.removeFavorite(id)
         }
     }
 

@@ -1,6 +1,7 @@
 package com.isaac.recipes.ui.details
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -8,6 +9,8 @@ import android.view.animation.AlphaAnimation
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -208,13 +211,41 @@ class RecipeDetailFragment : Fragment() {
                 setFavoriteMenuItemState(item, getString(R.string.remove))
                 //pass new favorite to view model for persistence
                 favoritesVM.addFavorite(currentRecipe)
+                showFavToast("ADD")
             } else {
-                setFavoriteMenuItemState(item, getString(R.string.save))
-                //pass removed favorite to view model for deletion
-                favoritesVM.removeRecipeFromFavorites(currentRecipe)
+                confirmFavRemove(item)
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showFavToast(type: String) {
+        if(type == "ADD") {
+            Toast.makeText(requireContext(),"Recipe added to Favorites!", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(requireContext(),"Recipe removed from Favorites!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun confirmFavRemove(item: MenuItem) {
+        val dialogBuilder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setMessage("Do you want to remove this recipe from your favorites?")
+            .setCancelable(false)
+            // positive button text and action
+            .setPositiveButton("YES") { dialog, _ ->
+                favoritesVM.removeRecipeFromFavorites(currentRecipe.id)
+                setFavoriteMenuItemState(item, getString(R.string.save))
+                showFavToast("REMOVE")
+                dialog.dismiss()
+            }
+            // negative button text and action
+            .setNegativeButton("NO") {
+                    dialog, _ -> dialog.cancel()
+            }
+
+        val alert = dialogBuilder.create()
+        alert.setTitle("Remove Favorite")
+        alert.show()
     }
 
 }

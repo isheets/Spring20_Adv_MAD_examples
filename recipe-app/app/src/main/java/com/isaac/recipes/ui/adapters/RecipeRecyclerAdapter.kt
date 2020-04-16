@@ -38,9 +38,16 @@ class RecipeRecyclerAdapter(val context: Context, var recipeList: List<Recipe>, 
         holder.itemView.setOnClickListener {
             itemListener.onRecipeItemClick(curRecipe)
         }
+
+        holder.itemView.setOnLongClickListener( View.OnLongClickListener{
+            itemListener.onRecipeLongClick(curRecipe)
+            return@OnLongClickListener true
+        })
     }
 
     interface RecipeItemListener {
         fun onRecipeItemClick(recipe: Recipe)
+        //optional long click
+        fun onRecipeLongClick(recipe: Recipe) {}
     }
 }
