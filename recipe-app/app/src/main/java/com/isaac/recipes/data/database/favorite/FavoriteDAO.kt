@@ -8,7 +8,7 @@ interface FavoriteDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFavorite(favorite: Favorite)
 
-    @Query("SELECT * FROM favorites_table")
+    @Query("SELECT * FROM favorites_table SORT ORDER BY date_added DESC")
     fun getAllFavorites(): LiveData<List<Favorite>>
 
     @Query("SELECT * FROM favorites_table WHERE recipe_id = :id")

@@ -2,6 +2,7 @@ package com.isaac.recipes.ui.details
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -52,6 +53,8 @@ class RecipeDetailFragment : Fragment() {
 
     private var resumed = false
 
+    private var glideLoading: Drawable? = null
+
     private val updateViewWithDetails = Observer<RecipeDetails> {
         //set the current recipe
         currentRecipe = it
@@ -68,6 +71,7 @@ class RecipeDetailFragment : Fragment() {
         //runs on background thread
         Glide.with(this)
             .load("${IMAGE_BASE_URL}/${it.id}-556x370.jpg")
+            .placeholder(glideLoading)
             .into(imageView)
 
         //get ingredient names
@@ -112,6 +116,8 @@ class RecipeDetailFragment : Fragment() {
         instructionTitleTextView = root.findViewById(R.id.instructionsTitleTextView)
         ingredientTitleTextView = root.findViewById(R.id.ingredientsTextView)
         constraintLayout = root.findViewById(R.id.detailConstraintLayout)
+
+        glideLoading = ResourcesCompat.getDrawable(resources, android.R.drawable.progress_indeterminate_horizontal, null)
 
         //loading bar with constraints
         loadingBar = ProgressBar(requireContext())
