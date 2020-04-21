@@ -2,6 +2,7 @@ package com.isaac.recipes
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var navView: BottomNavigationView
+    private lateinit var bgImage: ImageView
 
     //show/hide bottom nav and up nav arrow based on where we are navigating to
     private val navControllerListener = NavController.OnDestinationChangedListener { controller, destination, arguments ->
@@ -27,12 +29,19 @@ class MainActivity : AppCompatActivity() {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             navView.visibility = android.view.View.GONE
         }
+
+        if(destination.id == R.id.navigation_search) {
+            bgImage.animate().alpha(1f).duration = 200
+        } else {
+            bgImage.animate().alpha(0f).duration = 200
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navView = findViewById(R.id.nav_view)
+        bgImage = findViewById(R.id.mainBgImage)
 
         navController = findNavController(R.id.nav_host_fragment)
         navController.addOnDestinationChangedListener(navControllerListener)

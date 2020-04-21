@@ -8,9 +8,10 @@
     <string name="title_text">Title Text</string>
     <string name="instructions">Instructions</string>
     <string name="ingredients">Ingredients</string>
-    <string name="recipe_imgage">recipe imgage</string>
+    <string name="recipe_image">recipe imgage</string>
     <string name="search_recipes">Search recipes</string>
     <string name="search">Search</string>
     <string name="save">Save</string>
     <string name="remove">Remove</string>
+    <string name="cooking_away">cooking away</string>
 </resources>

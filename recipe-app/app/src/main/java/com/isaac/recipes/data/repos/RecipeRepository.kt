@@ -17,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.net.URLEncoder
 
 class RecipeRepository(val app: Application) {
 
@@ -50,9 +51,10 @@ class RecipeRepository(val app: Application) {
     //search the API for recipes based on a searchTerm
     @WorkerThread
     private suspend fun getRecipeList(searchTerm: String) {
-        Log.i(LOG_TAG, searchTerm)
+        val escapedSearch = URLEncoder.encode(searchTerm, "utf-8")
+        Log.i(LOG_TAG, escapedSearch)
         if(NetworkHelper.networkConnected(app)) {
-            val response = service.searchRecipes(searchTerm).execute()
+            val response = service.searchRecipes(escapedSearch).execute()
             if(response.body() != null) {
                 //successful request
                 val responseBody = response.body()

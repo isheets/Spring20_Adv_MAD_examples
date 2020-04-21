@@ -1,11 +1,10 @@
 package com.isaac.recipes.ui.details
 
 import android.annotation.SuppressLint
-import android.content.DialogInterface
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.view.animation.AlphaAnimation
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -19,13 +18,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.isaac.recipes.IMAGE_BASE_URL
 import com.isaac.recipes.LOG_TAG
 import com.isaac.recipes.R
+import com.isaac.recipes.data.models.DetailRecyclerViewItem
 import com.isaac.recipes.data.models.RecipeDetails
 import com.isaac.recipes.ui.favorites.SharedFavoritesViewModel
 import com.isaac.recipes.ui.search.SharedSearchViewModel
+import kotlin.math.roundToLong
 
 /**
  * A simple [Fragment] subclass.
@@ -65,15 +67,19 @@ class RecipeDetailFragment : Fragment() {
         recipeTitleTextView.text = it.title
 
         //images can be fetched using the following pattern: https://spoonacular.com/recipeImages/{ID}-{SIZE}.{TYPE}
+
+        var glideLoading = ResourcesCompat.getDrawable(resources, android.R.drawable.progress_indeterminate_horizontal, null)
+
         //runs on background thread
         Glide.with(this)
-            .load("${IMAGE_BASE_URL}/${it.id}-556x370.jpg")
+            .load("${IMAGE_BASE_URL}/${it.id}-312x231.jpg")
+            .placeholder(glideLoading)
             .into(imageView)
 
         //get ingredient names
-        val ingredientList = mutableListOf<String>()
+        val ingredientList = mutableListOf<DetailRecyclerViewItem>()
         for(ingredient in it.extendedIngredients) {
-            ingredientList.add(ingredient.originalString)
+            ingredientList.add(DetailRecyclerViewItem("${"%.2f".format(ingredient.amount)} ${ingredient.unit}", ingredient.name))
         }
         //add instantiate and use adapter for recyclerview
         val ingredientAdapter =
@@ -84,9 +90,9 @@ class RecipeDetailFragment : Fragment() {
         ingredientListView.adapter = ingredientAdapter
 
         //setup recyclerview for instructions
-        val instructionList = mutableListOf<String>()
+        val instructionList = mutableListOf<DetailRecyclerViewItem>()
         for(instruction in it.analyzedInstructions[0].steps) {
-            instructionList.add("${instruction.number}. ${instruction.step}")
+            instructionList.add(DetailRecyclerViewItem("${instruction.number}.", instruction.step))
         }
         val instructionAdapter = DetailsRecyclerAdapter(requireContext(), instructionList)
         instructionsRecyclerView.adapter = instructionAdapter

@@ -125,3 +125,8 @@ data class Instruction(
     val number: Int,
     val step: String
 )
+
+data class DetailRecyclerViewItem(
+    val main: String,
+    val detail: String
+)

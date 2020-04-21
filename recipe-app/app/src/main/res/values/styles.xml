@@ -3,9 +3,55 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="android:colorBackground">@color/appBG</item>
+        <item name="buttonStyle">@style/ButtonStyle</item>
+        <item name="editTextStyle">@style/EditTextStyle</item>
     </style>
+
+    <style name="TitleText" parent="@style/TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="RecipeDetailTitle" parent="@style/TitleText">
+        <item name="android:background">@drawable/primary_gradient</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">50dp</item>
+    </style>
+
+    <style name="SubtitleText" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="SubtitleText.color" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/secondaryColor</item>
+    </style>
+
+    <style name="BodyText" parent="@style/TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/bodyTextColor</item>
+    </style>
+
+    <style name="BodyText.bold" parent="BodyText">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ButtonStyle" parent="@style/Widget.AppCompat.Button">
+        <item name="android:backgroundTint">@color/secondaryColor</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+
+    <style name="EditTextStyle" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/rounded_corners</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:elevation">20dp</item>
+    </style>
+
 
 </resources>
