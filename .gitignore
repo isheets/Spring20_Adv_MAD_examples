@@ -278,5 +278,8 @@ fastlane/test_output
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
+#FIREBASE
+google-services.json
+
 
 # End of https://www.gitignore.io/api/osx,java,xcode,swift,kotlin,androidstudio
