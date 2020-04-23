@@ -70,7 +70,6 @@ class FavoriteRepository(val app: Application) {
     fun isRecipeFavorited(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             val favorite = favoriteDAO.getFavorite(id)
-            Log.i(LOG_TAG, "Looking for favorite, found ${favorite}")
             recipeIsFavorite.postValue( favorite != null)
         }
     }

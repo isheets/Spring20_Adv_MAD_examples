@@ -51,7 +51,10 @@ class FavoritesFragment : Fragment(), RecipeRecyclerAdapter.RecipeItemListener {
     }
 
     override fun onRecipeItemClick(recipe: Recipe) {
+        Log.i(LOG_TAG, "Favorite selected: $recipe")
         favVM.favSelected(recipe)
+        favVM.isFavorite.value = true
+        favVM.recipeToShow = recipe.id
         navController.navigate(R.id.action_navigation_favorites_to_recipeDetailFragment)
     }
 

@@ -20,6 +20,8 @@ class SharedSearchViewModel(app: Application) : AndroidViewModel(app) {
 
     val selectedRecipe = MutableLiveData<Recipe>()
 
+    var recipeToShow = 0
+
     val searchUserInput = MutableLiveData<String>()
 
     var searchLoading = true

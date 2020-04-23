@@ -109,6 +109,7 @@ class SearchResultsFragment : Fragment(),
 
     override fun onRecipeItemClick(recipe: Recipe) {
         Log.i(LOG_TAG, recipe.toString())
+        sharedSearchViewModel.recipeToShow = recipe.id
         sharedSearchViewModel.selectedRecipe.value = recipe
         navController.navigate(R.id.action_searchResultsFragment_to_recipeDetailFragment)
     }

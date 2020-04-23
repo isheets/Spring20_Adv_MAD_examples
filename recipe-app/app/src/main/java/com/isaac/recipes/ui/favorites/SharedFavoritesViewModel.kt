@@ -14,6 +14,8 @@ class SharedFavoritesViewModel(app: Application) : AndroidViewModel(app) {
 
     val favoriteRecipeList: MutableLiveData<List<Recipe>> = MutableLiveData()
 
+    var recipeToShow = 0
+
     private val favoriteListObserver =  Observer<List<Favorite>> {
         val allRecipes = mutableListOf<Recipe>()
 

@@ -1,7 +1,6 @@
 package com.isaac.recipes.ui.details
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -18,7 +17,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.isaac.recipes.IMAGE_BASE_URL
 import com.isaac.recipes.LOG_TAG
@@ -27,7 +25,6 @@ import com.isaac.recipes.data.models.DetailRecyclerViewItem
 import com.isaac.recipes.data.models.RecipeDetails
 import com.isaac.recipes.ui.favorites.SharedFavoritesViewModel
 import com.isaac.recipes.ui.search.SharedSearchViewModel
-import kotlin.math.roundToLong
 
 /**
  * A simple [Fragment] subclass.
@@ -52,34 +49,39 @@ class RecipeDetailFragment : Fragment() {
 
     private lateinit var loadingBar: ProgressBar
 
-    private var resumed = false
-
-    private val updateViewWithDetails = Observer<RecipeDetails> {
+    private fun updateView(newRecipe: RecipeDetails) {
         //set the current recipe
-        currentRecipe = it
+        currentRecipe = newRecipe
 
         //check to see if the user has already added a favorite
-        favoritesVM.isRecipeFavorited(it.id)
+        favoritesVM.isRecipeFavorited(newRecipe.id)
 
         //set the title in the action bar
-        (activity as AppCompatActivity?)?.supportActionBar?.title = it.title
+        (activity as AppCompatActivity?)?.supportActionBar?.title = newRecipe.title
         //set the title textview
-        recipeTitleTextView.text = it.title
+        recipeTitleTextView.text = newRecipe.title
 
         //images can be fetched using the following pattern: https://spoonacular.com/recipeImages/{ID}-{SIZE}.{TYPE}
-
-        var glideLoading = ResourcesCompat.getDrawable(resources, android.R.drawable.progress_indeterminate_horizontal, null)
-
+        var glideLoading = ResourcesCompat.getDrawable(
+            resources,
+            android.R.drawable.progress_indeterminate_horizontal,
+            null
+        )
         //runs on background thread
         Glide.with(this)
-            .load("${IMAGE_BASE_URL}/${it.id}-312x231.jpg")
+            .load("${IMAGE_BASE_URL}/${newRecipe.id}-312x231.jpg")
             .placeholder(glideLoading)
             .into(imageView)
 
         //get ingredient names
         val ingredientList = mutableListOf<DetailRecyclerViewItem>()
-        for(ingredient in it.extendedIngredients) {
-            ingredientList.add(DetailRecyclerViewItem("${"%.2f".format(ingredient.amount)} ${ingredient.unit}", ingredient.name))
+        for (ingredient in newRecipe.extendedIngredients) {
+            ingredientList.add(
+                DetailRecyclerViewItem(
+                    "${"%.2f".format(ingredient.amount)} ${ingredient.unit}",
+                    ingredient.name
+                )
+            )
         }
         //add instantiate and use adapter for recyclerview
         val ingredientAdapter =
@@ -91,13 +93,55 @@ class RecipeDetailFragment : Fragment() {
 
         //setup recyclerview for instructions
         val instructionList = mutableListOf<DetailRecyclerViewItem>()
-        for(instruction in it.analyzedInstructions[0].steps) {
-            instructionList.add(DetailRecyclerViewItem("${instruction.number}.", instruction.step))
+        for (instruction in newRecipe.analyzedInstructions[0].steps) {
+            instructionList.add(
+                DetailRecyclerViewItem(
+                    "${instruction.number}.",
+                    instruction.step
+                )
+            )
         }
         val instructionAdapter = DetailsRecyclerAdapter(requireContext(), instructionList)
         instructionsRecyclerView.adapter = instructionAdapter
 
-        toggleLoading(false)
+        toggleLoading(true)
+    }
+
+    private fun checkUpdateView(newRecipe: RecipeDetails, fav: Boolean) {
+        if(fav) {
+            //is a fav, check fav id
+            if(newRecipe.id == favoritesVM.recipeToShow) {
+                updateView(newRecipe)
+                favoritesVM.recipeToShow = -1
+            }
+        } else {
+            //not a fav
+            if(newRecipe.id == sharedSearchViewModel.recipeToShow) {
+                updateView(newRecipe)
+                sharedSearchViewModel.recipeToShow = -1
+            }
+        }
+    }
+
+    fun toggleLoading(showContent: Boolean) {
+        Log.i(LOG_TAG, "in toggleLoading()=$showContent")
+        if(showContent) {
+            ingredientListView.animate().alpha(1.0f).duration = 200
+            recipeTitleTextView.animate().alpha(1.0f).duration = 200
+            instructionsRecyclerView.animate().alpha(1.0f).duration = 200
+            imageView.animate().alpha(1.0f).duration = 200
+            instructionTitleTextView.animate().alpha(1.0f).duration = 200
+            ingredientTitleTextView.animate().alpha(1.0f).duration = 200
+            loadingBar.visibility = View.GONE
+        } else {
+            ingredientListView.alpha = 0.0f
+            recipeTitleTextView.alpha = 0.0f
+            instructionsRecyclerView.alpha = 0.0f
+            imageView.alpha = 0.0f
+            instructionTitleTextView.alpha = 0.0f
+            ingredientTitleTextView.alpha = 0.0f
+            loadingBar.visibility = View.VISIBLE
+        }
     }
 
     @SuppressLint("ResourceType")
@@ -124,8 +168,6 @@ class RecipeDetailFragment : Fragment() {
         loadingBar.id = 1
         constraintLayout.addView(loadingBar)
 
-        toggleLoading(true)
-
         var constraints = ConstraintSet()
         constraints.clone(constraintLayout)
         constraints.connect(loadingBar.id, ConstraintSet.RIGHT, constraintLayout.id, ConstraintSet.RIGHT, 8)
@@ -134,47 +176,24 @@ class RecipeDetailFragment : Fragment() {
 
         constraints.applyTo(constraintLayout)
 
+        toggleLoading(false)
+
         sharedSearchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
         favoritesVM = ViewModelProvider(requireActivity()).get(SharedFavoritesViewModel::class.java)
 
         //load the details into the view when they are updated either from SearchResults or from Favorites
-        sharedSearchViewModel.recipeDetails.observe(viewLifecycleOwner, updateViewWithDetails)
-        favoritesVM.favDetails.observe(viewLifecycleOwner, updateViewWithDetails)
+        sharedSearchViewModel.recipeDetails.observe(viewLifecycleOwner, Observer {
+            if(it.id == sharedSearchViewModel.recipeToShow && it.id != favoritesVM.recipeToShow) {
+                checkUpdateView(it, false)
+            }
+        })
+        favoritesVM.favDetails.observe(viewLifecycleOwner, Observer {
+            if(it.id == favoritesVM.recipeToShow && it.id != sharedSearchViewModel.recipeToShow) {
+                checkUpdateView(it, true)
+            }
+        })
 
         return root
-    }
-
-    override fun onResume() {
-        //hide content widgets and show progress bar
-        resumed = true
-        toggleLoading(true)
-        super.onResume()
-    }
-
-    private fun toggleLoading(loading: Boolean) {
-        Log.i(LOG_TAG, "toggleLoading $loading $resumed")
-        if(loading) {
-            Log.i(LOG_TAG, "hiding content")
-            ingredientListView.alpha = 0.0f
-            recipeTitleTextView.alpha = 0.0f
-            instructionsRecyclerView.alpha = 0.0f
-            imageView.alpha = 0.0f
-            instructionTitleTextView.alpha = 0.0f
-            ingredientTitleTextView.alpha = 0.0f
-            loadingBar.visibility = View.VISIBLE
-
-        } else if(!loading && resumed){
-            Log.i(LOG_TAG, "fading content in")
-            ingredientListView.animate().alpha(1.0f).duration = 200
-            recipeTitleTextView.animate().alpha(1.0f).duration = 200
-            instructionsRecyclerView.animate().alpha(1.0f).duration = 200
-            imageView.animate().alpha(1.0f).duration = 200
-            instructionTitleTextView.animate().alpha(1.0f).duration = 200
-            ingredientTitleTextView.animate().alpha(1.0f).duration = 200
-            loadingBar.visibility = View.GONE
-
-            resumed = false
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
