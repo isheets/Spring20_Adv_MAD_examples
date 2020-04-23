@@ -113,12 +113,15 @@ class FavoriteRepository(val app: Application) {
         favoriteDetails.value = allData[recipe.id]
     }
 
-    fun removeRecipeFromFavorites(id: Int) {}
+    fun removeRecipeFromFavorites(id: Int) {
+        db.collection("favorites").document(id.toString()).delete()
+    }
 
     fun addFavorite(recipe: RecipeDetails) {
         val recipeMap = recipeDetailsToHashMap(recipe)
 
-        db.collection("favorites").add(recipeMap)
+        db.collection("favorites").document(recipe.id.toString())
+            .set(recipeMap)
             .addOnSuccessListener {
                 Log.i(LOG_TAG, "Added favorite success!")
             }
