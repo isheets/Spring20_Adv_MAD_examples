@@ -41,7 +41,7 @@ class FavoriteRepository(val app: Application) {
         val allFavorites = mutableListOf<Recipe>()
         for(doc in result) {
             //get the data from the document
-            val id: Int = (doc.get("id") as Long).toInt()
+            val id: Int = doc.id.toInt()
             val title: String = doc.getString("title")!!
             val summary: String = doc.getString("summary")!!
             val image: String = doc.getString("image")!!
