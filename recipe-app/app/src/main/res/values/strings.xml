@@ -2,9 +2,6 @@
     <string name="app_name">Recipes</string>
     <string name="title_search">Search</string>
     <string name="title_favorites">Favorites</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_text">Title Text</string>
     <string name="instructions">Instructions</string>
     <string name="ingredients">Ingredients</string>

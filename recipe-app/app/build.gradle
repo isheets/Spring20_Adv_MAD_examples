@@ -80,4 +80,6 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
 
     implementation 'com.google.firebase:firebase-firestore-ktx:21.4.2'
+
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
 }

@@ -3,6 +3,8 @@ package com.isaac.recipes.data.repos
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -20,21 +22,24 @@ class FavoriteRepository(val app: Application) {
 
     val recipeIsFavorite = MutableLiveData<Boolean>()
 
+    private val firebaseUser = FirebaseAuth.getInstance().currentUser
+
     init {
-        db.collection("favorites")
-            .addSnapshotListener { snapshot, e ->
-                if(e != null) {
-                    Log.e(LOG_TAG, "Listen failed.", e)
-                    return@addSnapshotListener
-                }
-                if (snapshot != null) {
-                    parseAllData(snapshot)
-                } else {
-                    Log.d(LOG_TAG, "Current data: null")
-                }
+        if(firebaseUser != null) {
+            db.collection(firebaseUser.uid)
+                .addSnapshotListener { snapshot, e ->
+                    if (e != null) {
+                        Log.e(LOG_TAG, "Listen failed.", e)
+                        return@addSnapshotListener
+                    }
+                    if (snapshot != null) {
+                        parseAllData(snapshot)
+                    } else {
+                        Log.d(LOG_TAG, "Current data: null")
+                    }
 
-            }
-
+                }
+        }
     }
 
     private fun parseAllData(result: QuerySnapshot) {
@@ -114,20 +119,24 @@ class FavoriteRepository(val app: Application) {
     }
 
     fun removeRecipeFromFavorites(id: Int) {
-        db.collection("favorites").document(id.toString()).delete()
+        if(firebaseUser != null) {
+            db.collection(firebaseUser.uid).document(id.toString()).delete()
+        }
     }
 
     fun addFavorite(recipe: RecipeDetails) {
-        val recipeMap = recipeDetailsToHashMap(recipe)
+        if(firebaseUser != null) {
+            val recipeMap = recipeDetailsToHashMap(recipe)
 
-        db.collection("favorites").document(recipe.id.toString())
-            .set(recipeMap)
-            .addOnSuccessListener {
-                Log.i(LOG_TAG, "Added favorite success!")
-            }
-            .addOnFailureListener { exception ->
-                Log.w(LOG_TAG, "Error adding document.", exception)
-            }
+            db.collection(firebaseUser.uid).document(recipe.id.toString())
+                .set(recipeMap)
+                .addOnSuccessListener {
+                    Log.i(LOG_TAG, "Added favorite success!")
+                }
+                .addOnFailureListener { exception ->
+                    Log.w(LOG_TAG, "Error adding document.", exception)
+                }
+        }
     }
 
     private fun recipeDetailsToHashMap(recipe: RecipeDetails): HashMap<String, *> {
